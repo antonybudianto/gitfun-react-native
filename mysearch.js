@@ -12,7 +12,7 @@ const Mysearch = ({onSubmitEditing}) => {
       }}>
       <TextInput
         onSubmitEditing={onSubmitEditing}
-        placeholder="Search by username"
+        placeholder="Search by users or organizations"
         style={{
           flex: 1,
           marginLeft: 5,

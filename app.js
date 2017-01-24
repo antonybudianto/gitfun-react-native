@@ -25,15 +25,16 @@ export default class FlexDimensionsBasics extends Component {
 
   searchGH(data) {
     let value = data.nativeEvent.text;
+
+    if (!value) {
+      return;
+    }
+
     this.setState({
       result: [],
       error: null,
       info: `Searching ${value}...`
     });
-
-    if (!value) {
-      return;
-    }
 
     console.log(`searching '${value}'...`);
 
@@ -83,47 +84,51 @@ export default class FlexDimensionsBasics extends Component {
 
   render() {
     return (
-        <ScrollView style={{flex: 1}}>
+        <View style={{
+            flex: 1
+          }}>
           <View style={styles.header} >
             <Text style={styles.headerText}>{this.state.text}</Text>
           </View>
-          <Mysearch
-            onSubmitEditing={this.searchGH.bind(this)}></Mysearch>
-          {
-            this.state.info ? (
-            <View style={styles.info}>
-              <Text style={{color: 'white'}}>{this.state.info}</Text>
-            </View>
-            ) : null
-          }
-          {
-            this.state.error ? (
-            <View style={styles.error}>
-              <Text style={{color: 'white'}}>ERROR: {this.state.error}</Text>
-            </View>
-            ) : null
-          }
-          {
-              this.state.result.map(r =>
-                <GitCard key={r.id} git={r} />
-              )
-          }
-        </ScrollView>
+          <ScrollView style={{flex: 1}}>
+            <Mysearch
+              onSubmitEditing={this.searchGH.bind(this)}></Mysearch>
+            {
+              this.state.info ? (
+              <View style={styles.info}>
+                <Text style={{color: 'white'}}>{this.state.info}</Text>
+              </View>
+              ) : null
+            }
+            {
+              this.state.error ? (
+              <View style={styles.error}>
+                <Text style={{color: 'white'}}>ERROR: {this.state.error}</Text>
+              </View>
+              ) : null
+            }
+            {
+                this.state.result.map(r =>
+                  <GitCard key={r.id} git={r} />
+                )
+            }
+          </ScrollView>
+        </View>
     );
   }
 };
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
-    height: 100,
+    flex: 0,
+    height: 70,
     backgroundColor: "rgb(74,144,226)",
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   headerText: {
-    marginTop: 40,
     color: 'white',
-    fontSize: 30,
+    fontSize: 22,
     fontWeight: 'bold'
   },
   error: {
