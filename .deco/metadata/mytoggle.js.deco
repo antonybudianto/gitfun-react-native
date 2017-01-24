@@ -1,0 +1,69 @@
+{
+	"liveValues": [
+		{
+			"range": {
+				"from": {
+					"line": 6,
+					"ch": 14
+				},
+				"to": {
+					"line": 6,
+					"ch": 15
+				}
+			},
+			"type": "number",
+			"name": "Flex",
+			"group": "MainView"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 7,
+					"ch": 23
+				},
+				"to": {
+					"line": 7,
+					"ch": 28
+				}
+			},
+			"editWith": "dropdown",
+			"dropdownOptions": "FlexDirection",
+			"type": "string",
+			"name": "FlexDirection",
+			"group": "MainView"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 8,
+					"ch": 20
+				},
+				"to": {
+					"line": 8,
+					"ch": 28
+				}
+			},
+			"editWith": "dropdown",
+			"dropdownOptions": "AlignItems",
+			"type": "string",
+			"name": "AlignItems",
+			"group": "MainView"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 10,
+					"ch": 25
+				},
+				"to": {
+					"line": 10,
+					"ch": 32
+				}
+			},
+			"editWith": "colorPicker",
+			"type": "string",
+			"name": "BackgroundColor",
+			"group": "MainView"
+		}
+	]
+}

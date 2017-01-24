@@ -1,0 +1,32 @@
+{
+	"liveValues": [
+		{
+			"range": {
+				"from": {
+					"line": 10,
+					"ch": 17
+				},
+				"to": {
+					"line": 10,
+					"ch": 19
+				}
+			},
+			"type": "number",
+			"name": "Padding"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 11,
+					"ch": 14
+				},
+				"to": {
+					"line": 11,
+					"ch": 15
+				}
+			},
+			"type": "number",
+			"name": "Flex"
+		}
+	]
+}
