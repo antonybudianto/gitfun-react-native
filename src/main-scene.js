@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 
-import Mygitfun from './mygitfun';
+import GitFun from './git-fun/git-fun';
 
-class MyScene extends Component {
+class MainScene extends Component {
 
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ class MyScene extends Component {
 
   onForward() {
     this.props.navigator.push({
-      component: Mygitfun
+      component: GitFun
     });
   }
 
@@ -23,14 +23,16 @@ class MyScene extends Component {
         <View style={{
             flex: 0,
             height: 70,
-            padding: 10,
-            paddingTop: 40,
+            paddingTop: 20,
             backgroundColor: 'skyblue',
             flexDirection: 'row',
-            justifyContent: 'flex-end'
+            justifyContent: 'flex-end',
+            alignItems: 'center'
           }}>
           <TouchableHighlight onPress={this.onForward.bind(this)}>
-            <Text>Next</Text>
+            <Text style={{
+              padding: 15
+            }}>Next</Text>
           </TouchableHighlight>
         </View>
         <View style={{
@@ -46,7 +48,7 @@ class MyScene extends Component {
 
 }
 
-MyScene.propTypes = {}
-MyScene.defaultProps = {}
+MainScene.propTypes = {}
+MainScene.defaultProps = {}
 
-export default MyScene
+export default MainScene

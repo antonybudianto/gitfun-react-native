@@ -9,10 +9,10 @@ import {
 
 import * as _ from 'lodash';
 
-import Mysearch from './mysearch';
-import GitCard from './gitcard';
+import GitSearch from './git-search';
+import GitCard from './git-card';
 
-class Mygitfun extends Component {
+class GitFun extends Component {
 
   constructor(props) {
     super(props)
@@ -83,8 +83,8 @@ class Mygitfun extends Component {
           <Text style={styles.headerText}>{this.state.text}</Text>
         </View>
         <ScrollView style={{flex: 1}}>
-          <Mysearch
-            onSubmitEditing={this.searchGH.bind(this)}></Mysearch>
+          <GitSearch
+            onSubmitEditing={this.searchGH.bind(this)}></GitSearch>
           {
             this.state.info ? (
             <View style={styles.info}>
@@ -117,7 +117,10 @@ class Mygitfun extends Component {
                 padding: 10
               }}
               onPress={this.back.bind(this)}>
-              <Text style={{textAlign:'center'}}>Back</Text>
+              <Text style={{
+                textAlign:'center',
+                color: 'white'
+              }}>Back</Text>
             </TouchableHighlight>
           </View>
 
@@ -138,6 +141,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: 'white',
     fontSize: 22,
+    paddingTop: 20,
     fontWeight: 'bold'
   },
   error: {
@@ -157,7 +161,7 @@ const styles = StyleSheet.create({
   }
 });
 
-Mygitfun.propTypes = {}
-Mygitfun.defaultProps = {}
+GitFun.propTypes = {}
+GitFun.defaultProps = {}
 
-export default Mygitfun
+export default GitFun

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TextInput, Text } from 'react-native'
 
-const Mysearch = ({onSubmitEditing}) => {
+const GitSearch = ({onSubmitEditing}) => {
   return (
     <View style={{
         flex: 1,
@@ -24,7 +24,7 @@ const Mysearch = ({onSubmitEditing}) => {
   )
 }
 
-Mysearch.propTypes = {}
-Mysearch.defaultProps = {}
+GitSearch.propTypes = {}
+GitSearch.defaultProps = {}
 
-export default Mysearch
+export default GitSearch
