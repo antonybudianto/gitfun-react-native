@@ -10,6 +10,7 @@ const GitRepoCard = ({repo}) =>
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        backgroundColor: 'white',
         padding: 5,
         marginBottom: 10,
         borderBottomColor: 'lightgray',

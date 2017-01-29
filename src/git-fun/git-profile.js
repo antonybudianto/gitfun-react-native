@@ -78,13 +78,18 @@ class GitProfile extends Component {
               } stars</Text>
             <Text>
             {this.state.repos
+                .filter(repo => !repo.fork).length
+              } repos</Text>
+            <Text>
+            {this.state.repos
               .filter(repo => repo.fork).length
             } forks</Text>
           </View>
         </View>
         <ScrollView style={{
           flex: 1,
-          padding: 10
+          padding: 10,
+          backgroundColor: 'white'
         }}>
           {
             this.state.repos
