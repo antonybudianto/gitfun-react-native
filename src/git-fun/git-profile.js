@@ -4,7 +4,8 @@ import {
     ScrollView,
     Text,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
+    StyleSheet
 } from 'react-native';
 
 class GitProfile extends Component {
@@ -45,28 +46,40 @@ class GitProfile extends Component {
           }}>
           <TouchableHighlight underlayColor={'coral'} onPress={this.props.back}>
             <Text style={{
-              padding: 15
+              padding: 15,
+              flex: 1
             }}>Back</Text>
           </TouchableHighlight>
         </View>
         <View style={{
-          flex: 1,
-          padding: 10
+          flex: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: 10,
+          backgroundColor: 'skyblue'
         }}>
-          <Image
-              style={{
-              width: 80,
-              height: 50,
+          <Image style={{
+                width: 80,
+                height: 50,
               }}
-              resizeMode={"contain"}
-              source={{uri: this.props.profile['avatar_url']}}
+            resizeMode={'contain'}
+            source={{uri: this.props.profile['avatar_url']}}
           />
-          <Text>{this.props.profile.login}</Text>
-          <Text>Total stars: &nbsp;
+          <Text style={{
+            fontSize: 14
+          }}>{this.props.profile.login}</Text>
+          <View>
+            <Text>
             {this.state.repos
-              .filter(repo => !repo.fork)
-              .reduce((a,b) => a+b['stargazers_count'], 0)
-            }</Text>
+                .filter(repo => !repo.fork)
+                .reduce((a,b) => a+b['stargazers_count'], 0)
+              } stars</Text>
+            <Text>
+            {this.state.repos
+              .filter(repo => repo.fork).length
+            } forks</Text>
+          </View>
         </View>
         <ScrollView style={{
           flex: 1,
@@ -76,18 +89,45 @@ class GitProfile extends Component {
             this.state.repos
             .filter(repo => !repo.fork)
             .map(repo =>
-              <View key={repo.id}>
-                <Text>{repo['name']} - {repo['stargazers_count']} stars</Text>
+              <View style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 5,
+                marginBottom: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1
+              }} key={repo.id}>
+                <View style={{
+                  flex:1,
+                  flexGrow: 3
+                }}>
+                  <Text style={{fontWeight: 'bold'}}>{repo['name']}</Text>
+                  <Text style={{marginTop: 5, fontSize: 12}}>{repo['description']}</Text>
+                </View>
+                <View style={{flex:1}}>
+                  <Text style={styles.repoInfoText}>{repo['stargazers_count']} stars</Text>
+                  <Text style={styles.repoInfoText}>{repo['forks_count']} forks</Text>
+                  <Text style={styles.repoInfoText}>{repo['watchers_count']} watchers</Text>
+                  <Text style={styles.repoInfoText}>{repo['open_issues_count']} open issues</Text>
+                  <Text style={styles.repoInfoText}>{repo['has_wiki'] ? 'Has wiki' : 'No wiki'}</Text>
+                  <Text style={styles.repoInfoText}>{repo['language']}</Text>
+                </View>
               </View>
             )
           }
         </ScrollView>
-
       </View>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  repoInfoText: {
+    textAlign: 'right',
+    fontSize: 11
+  }
+});
 
 GitProfile.propTypes = {}
 GitProfile.defaultProps = {}
