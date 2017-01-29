@@ -3,10 +3,11 @@ import {
   View,
   Text,
   Image,
+  TouchableHighlight
 } from 'react-native'
 
-const GitCard = ({git}) => {
-  return (
+const GitCard = ({git, onPress}) =>
+  <TouchableHighlight underlayColor={'orange'} onPress={onPress}>
     <View style={{
         padding: 5,
         flex: 1,
@@ -23,8 +24,7 @@ const GitCard = ({git}) => {
       />
       <Text>{git.login}</Text>
     </View>
-  )
-}
+  </TouchableHighlight>
 
 GitCard.propTypes = {}
 GitCard.defaultProps = {}
