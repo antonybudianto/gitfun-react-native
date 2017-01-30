@@ -70,7 +70,7 @@ class GitFun extends Component {
         console.log(res);
         this.setState({
           result: res.items,
-          info: null
+          info: res.items.length === 0 ? 'No data found' : null
         });
       },
       err => {
