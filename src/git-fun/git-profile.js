@@ -15,7 +15,9 @@ class GitProfile extends Component {
     super(props);
 
     this.state = {
-      repos: []
+      repos: [],
+      loading: true,
+      error: null
     };
 
     this.fetchRepos();
@@ -26,7 +28,14 @@ class GitProfile extends Component {
     .then(response => response.json())
     .then(res => {
       this.setState({
-        repos: res
+        repos: res,
+        loading: false
+      });
+    }, err => {
+      console.log(err);
+      this.setState({
+        error: err,
+        loading: false
       });
     });
   }
@@ -91,6 +100,9 @@ class GitProfile extends Component {
           padding: 10,
           backgroundColor: 'white'
         }}>
+          {
+            this.state.loading ? <Text>Loading repository data...</Text> : null
+          }
           {
             this.state.repos
             .filter(repo => !repo.fork)
