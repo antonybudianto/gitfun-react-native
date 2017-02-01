@@ -1,14 +1,67 @@
 import React, { Component } from 'react';
-import { Navigator } from 'react-native'
-
-import * as _ from 'lodash';
+import {
+  Navigator,
+  Text,
+  StyleSheet,
+  TouchableHighlight
+} from 'react-native'
 
 import GitFun from './git-fun/git-fun';
+
+const styles = StyleSheet.create({
+  leftNavButtonText: {
+    padding: 10,
+    color: 'white'
+  },
+  rightNavButtonText: {
+    padding: 10
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    padding: 10,
+    color: 'white'
+  }
+});
+
+const NavigationBarRouteMapper = {
+  LeftButton(route, navigator, index, navState) {
+    if (index > 0) {
+      return (
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={() => { if (index > 0) { navigator.pop() } }}>
+          <Text style={ styles.leftNavButtonText }>Back</Text>
+        </TouchableHighlight>)
+    }
+    else { return null }
+  },
+  RightButton(route, navigator, index, navState) {
+    if (route.onPress) return (
+      <TouchableHighlight
+         onPress={ () => route.onPress() }>
+         <Text style={ styles.rightNavButtonText }>
+              { route.rightText || 'Right Button' }
+         </Text>
+       </TouchableHighlight>)
+  },
+  Title(route, navigator, index, navState) {
+    return <Text style={ styles.title }>{route.title || 'GitReact'}</Text>
+  }
+};
 
 export default class FlexDimensionsBasics extends Component {
   render() {
     return (
-      <Navigator initialRoute={{component: GitFun}}
+      <Navigator
+        initialRoute={{component: GitFun}}
+        navigationBar={
+          <Navigator.NavigationBar
+            style={{
+              backgroundColor: 'skyblue'
+            }}
+            routeMapper={ NavigationBarRouteMapper } />
+        }
         renderScene={(route, navigator) =>
           React.createElement(route.component,
             { ...this.props, ...route.passProps, route, navigator } )

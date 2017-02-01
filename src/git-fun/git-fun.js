@@ -91,11 +91,9 @@ class GitFun extends Component {
 
     return (
       <View style={{
-        flex: 1
+        flex: 1,
+        marginTop: 60
       }}>
-        <View style={styles.header} >
-          <Text style={styles.headerText}>{this.state.text}</Text>
-        </View>
         <View style={{
           flex: 0,
           height: 50,
