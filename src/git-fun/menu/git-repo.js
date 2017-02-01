@@ -43,7 +43,8 @@ class GitRepo extends Component {
   render() {
     return (
       <View style={{
-        flex: 1
+        flex: 1,
+        marginTop: 60
       }}>
         <View style={{
           flex: 0,
@@ -61,19 +62,20 @@ class GitRepo extends Component {
             source={{uri: this.props.profile['avatar_url']}}
           />
           <Text style={{
-            fontSize: 14
+            fontSize: 14,
+            color: 'white'
           }}>{this.props.profile.login}</Text>
           <View>
-            <Text>
+            <Text style={{color: 'white'}}>
             {this.state.repos
                 .filter(repo => !repo.fork)
                 .reduce((a,b) => a+b['stargazers_count'], 0)
               } stars</Text>
-            <Text>
+            <Text style={{color: 'white'}}>
             {this.state.repos
                 .filter(repo => !repo.fork).length
               } repos</Text>
-            <Text>
+            <Text style={{color: 'white'}}>
             {this.state.repos
               .filter(repo => repo.fork).length
             } forks</Text>
@@ -104,13 +106,6 @@ class GitRepo extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  repoInfoText: {
-    textAlign: 'right',
-    fontSize: 11
-  }
-});
 
 GitRepo.propTypes = {}
 GitRepo.defaultProps = {}

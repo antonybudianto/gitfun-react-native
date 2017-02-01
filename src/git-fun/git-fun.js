@@ -7,8 +7,6 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import * as _ from 'lodash';
-
 import GitSearch from './git-search';
 import GitCard from './git-card';
 import GitProfile from './git-profile';
@@ -26,17 +24,12 @@ class GitFun extends Component {
     };
   }
 
-  back() {
-    this.props.navigator.pop();
-  }
-
   onPress(r) {
     console.log(r);
     this.props.navigator.push({
       component: GitProfile,
       passProps: {
-        profile: r,
-        back: this.back.bind(this)
+        profile: r
       }
     });
   }
@@ -149,19 +142,6 @@ class GitFun extends Component {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flex: 0,
-    height: 70,
-    backgroundColor: "rgb(74,144,226)",
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  headerText: {
-    color: 'white',
-    fontSize: 22,
-    paddingTop: 20,
-    fontWeight: 'bold'
-  },
   error: {
     flex: 0,
     padding: 5,
@@ -171,11 +151,6 @@ const styles = StyleSheet.create({
     flex: 0,
     padding: 5,
     backgroundColor: 'skyblue'
-  },
-  container: {
-    flex: 1,
-    padding: 5,
-    backgroundColor: 'skyblue',
   },
   backToTop: {
     width: 300,

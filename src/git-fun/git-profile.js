@@ -22,9 +22,8 @@ class GitProfile extends Component {
   goToRepos() {
     this.props.navigator.push({
       component: GitRepo,
-      title: `${this.props.profile.login}'s repos`,
+      title: 'View repositories',
       passProps: {
-        back: this.props.back,
         profile: this.props.profile
       }
     });

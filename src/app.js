@@ -41,7 +41,7 @@ const NavigationBarRouteMapper = {
       <TouchableHighlight
          onPress={ () => route.onPress() }>
          <Text style={ styles.rightNavButtonText }>
-              { route.rightText || 'Right Button' }
+              { route.rightText }
          </Text>
        </TouchableHighlight>)
   },
@@ -50,7 +50,7 @@ const NavigationBarRouteMapper = {
   }
 };
 
-export default class FlexDimensionsBasics extends Component {
+export default class App extends Component {
   render() {
     return (
       <Navigator
