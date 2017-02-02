@@ -10,6 +10,7 @@ import {
 
 import GitMenu from './git-menu';
 import GitRepo from './menu/git-repo';
+import GitFollower from './menu/git-follower';
 
 class GitProfile extends Component {
   constructor(props) {
@@ -30,7 +31,13 @@ class GitProfile extends Component {
   }
 
   goToFollowers() {
-
+    this.props.navigator.push({
+      component: GitFollower,
+      title: 'View followers',
+      passProps: {
+        profile: this.props.profile
+      }
+    });
   }
 
   render() {
