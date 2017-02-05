@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   rightNavButtonText: {
-    padding: 10
+    padding: 10,
+    color: 'white'
   },
   title: {
     fontSize: 18,
@@ -37,11 +38,12 @@ const NavigationBarRouteMapper = {
     else { return null }
   },
   RightButton(route, navigator, index, navState) {
-    if (route.onPress) return (
+    if (route.rightNavButton) return (
       <TouchableHighlight
-         onPress={ () => route.onPress() }>
+         underlayColor="transparent"
+         onPress={ () => route.rightNavButton.onPress() }>
          <Text style={ styles.rightNavButtonText }>
-              { route.rightText }
+              { route.rightNavButton.text }
          </Text>
        </TouchableHighlight>)
   },

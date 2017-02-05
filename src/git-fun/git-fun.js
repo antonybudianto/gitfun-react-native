@@ -17,15 +17,15 @@ class GitFun extends Component {
     super(props)
     this.state = {
       text: 'GitReact',
-      searchText: '',
+      username: null,
       result: [],
       error: null,
-      info: null
+      info: null,
+      filter: {}
     };
   }
 
   onPress(r) {
-    console.log(r);
     this.props.navigator.push({
       component: GitProfile,
       passProps: {
@@ -34,8 +34,32 @@ class GitFun extends Component {
     });
   }
 
-  searchGH(data) {
-    let value = data.nativeEvent.text;
+  searchLocation(text) {
+    this.setState({
+      filter: {
+        ...this.state.filter,
+        location: text
+      }
+    });
+  }
+
+  searchUsername(text) {
+    this.setState({
+      username: text
+    });
+  }
+
+  generateFilter() {
+    return Object.keys(this.state.filter)
+    .filter(key => this.state.filter[key])
+    .map(key => {
+      return `+${key}:${this.state.filter[key]}`
+    })
+    .join('');
+  }
+
+  searchGH() {
+    let value = this.state.username;
 
     if (!value) {
       return;
@@ -47,9 +71,11 @@ class GitFun extends Component {
       info: `Searching ${value}...`
     });
 
-    console.log(`searching '${value}'...`);
+    const filter = this.generateFilter();
+    const endpoint = `https://api.github.com/search/users?q=${value}${filter}`;
+    console.log(endpoint);
 
-    fetch(`https://api.github.com/search/users?q=${value}`, {
+    fetch(endpoint, {
       method: 'GET'
     })
     .then(res => {
@@ -70,7 +96,6 @@ class GitFun extends Component {
         err.json().then(e => {
           this.setState({
             result: [],
-            avatar: null,
             error: e.message,
             info: null
           });
@@ -89,10 +114,15 @@ class GitFun extends Component {
       }}>
         <View style={{
           flex: 0,
-          height: 50,
+          height: 80,
           borderBottomColor: 'gray'
         }}>
-          <GitSearch onSubmitEditing={this.searchGH.bind(this)}></GitSearch>
+          <GitSearch placeholder="Search by users or organizations"
+            onSubmitEditing={this.searchGH.bind(this)}
+            onChangeText={this.searchUsername.bind(this)}></GitSearch>
+          <GitSearch placeholder="Location..."
+            onSubmitEditing={this.searchGH.bind(this)}
+            onChangeText={this.searchLocation.bind(this)}></GitSearch>
         </View>
         {
           this.state.info ? (
