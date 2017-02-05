@@ -19,6 +19,7 @@ const GitCountView = ({count, label}) =>
   }}>
     <Text style={{
       fontWeight: 'bold',
+      fontSize: 18,
       color: 'white',
       textAlign: 'center'
     }}>{count}</Text>
@@ -96,7 +97,7 @@ class GitProfile extends Component {
             flex: 1
           }}>
             <Image style={{
-                  width: 80,
+                  width: 50,
                   height: 50,
                 }}
               resizeMode={'contain'}
@@ -125,18 +126,35 @@ class GitProfile extends Component {
             }}>{this.state.detail.location}</Text>
             <Text style={{
               color: 'white',
+              textAlign: 'right'
+            }}>Member since {new Date(this.state.detail.created_at).getFullYear()}</Text>
+            <Text style={{
+              color: 'white',
               textAlign: 'right',
               fontWeight: 'bold'
             }}>{this.state.detail.hireable ? 'Available for hire' : 'Not available for hire'}</Text>
           </View>
         </View>
-
+        <View style={{
+          flex: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 10,
+          backgroundColor: 'skyblue'
+        }}>
+          <Text style={{
+            color: 'white',
+            textAlign: 'center',
+            fontStyle: 'italic'
+          }}>{this.state.detail.bio}</Text>
+        </View>
         <View style={{
           flex: 0,
           flexDirection: 'row',
           alignItems: 'center',
           padding: 10,
-          backgroundColor: 'lightskyblue'
+          backgroundColor: 'deepskyblue'
         }}>
           <GitCountView count={this.state.detail.followers} label="followers" />
           <GitCountView count={this.state.detail.following} label="following" />

@@ -14,7 +14,7 @@ const LoadingView = ({text}) =>
         }}>
         <Text style={{
             color: 'white',
-            fontWeight: 'bold'
+            fontSize: 20
         }}>{ text || 'Loading...' }</Text>
     </View>
 
