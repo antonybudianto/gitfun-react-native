@@ -1,23 +1,26 @@
 {
-	"name": "todo",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"lodash": "^4.17.4",
-		"react": "~15.4.2",
-		"react-native": "0.40.0"
-	},
-	"devDependencies": {
-		"babel-jest": "18.0.0",
-		"babel-preset-react-native": "1.9.1",
-		"jest": "18.1.0",
-		"react-test-renderer": "~15.4.0-rc.4"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "teslo",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-native-scripts": "0.0.18",
+    "jest-expo": "^0.2.1",
+    "react-test-renderer": "~15.4.0"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "14.0.2",
+    "react": "~15.4.0",
+    "react-native": "0.41.2"
+  }
 }
