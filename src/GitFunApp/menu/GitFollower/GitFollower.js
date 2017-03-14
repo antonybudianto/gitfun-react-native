@@ -8,8 +8,8 @@ import {
     StyleSheet
 } from 'react-native';
 
-import GitProfile from '../git-profile';
-import GitCard from '../git-card';
+import GitProfile from '../GitProfile/GitProfile';
+import GitUserCard from '../GitFun/GitUserCard';
 
 class GitFollower extends Component {
   constructor(props) {
@@ -94,7 +94,7 @@ class GitFollower extends Component {
           {
             this.state.followers
             .map(follower =>
-              <GitCard onPress={this.goToProfile.bind(this, follower)} key={follower.id} git={follower} />
+              <GitUserCard onPress={this.goToProfile.bind(this, follower)} key={follower.id} git={follower} />
             )
           }
         </ScrollView>

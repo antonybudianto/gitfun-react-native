@@ -8,7 +8,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-import GitRepoCard from '../git-repo-card';
+import GitRepoCard from './GitRepoCard';
 
 class GitRepo extends Component {
   constructor(props) {

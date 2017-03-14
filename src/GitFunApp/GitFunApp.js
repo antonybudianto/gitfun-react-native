@@ -6,8 +6,9 @@ import {
   TouchableHighlight
 } from 'react-native'
 
-import GitFun from './git-fun/git-fun';
+import GitFun from './menu/GitFun/GitFun';
 
+const APP_NAVBAR_TITLE = 'GitFun';
 const styles = StyleSheet.create({
   leftNavButtonText: {
     padding: 10,
@@ -48,11 +49,11 @@ const NavigationBarRouteMapper = {
        </TouchableHighlight>)
   },
   Title(route, navigator, index, navState) {
-    return <Text style={ styles.title }>{route.title || 'GitReact'}</Text>
+    return <Text style={ styles.title }>{route.title || APP_NAVBAR_TITLE}</Text>
   }
 };
 
-export default class App extends Component {
+export default class GitFunApp extends Component {
   render() {
     return (
       <Navigator

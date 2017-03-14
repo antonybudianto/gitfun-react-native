@@ -8,10 +8,10 @@ import {
     StyleSheet
 } from 'react-native';
 
-import GitMenu from './git-menu';
-import GitRepo from './menu/git-repo';
-import GitFollower from './menu/git-follower';
-import LoadingView from './common/loading-view';
+import GitMenu from '../../common/GitMenu';
+import GitRepo from '../GitRepo/GitRepo';
+import GitFollower from '../GitFollower/GitFollower';
+import LoadingView from '../../common/LoadingView';
 
 const GitCountView = ({count, label}) =>
   <View style={{

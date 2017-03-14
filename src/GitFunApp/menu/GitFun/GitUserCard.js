@@ -6,7 +6,7 @@ import {
   TouchableHighlight
 } from 'react-native'
 
-const GitCard = ({git, onPress}) =>
+const GitUserCard = ({git, onPress}) =>
   <TouchableHighlight underlayColor={'orange'} onPress={onPress}>
     <View style={{
         padding: 5,
@@ -26,7 +26,7 @@ const GitCard = ({git, onPress}) =>
     </View>
   </TouchableHighlight>
 
-GitCard.propTypes = {}
-GitCard.defaultProps = {}
+GitUserCard.propTypes = {}
+GitUserCard.defaultProps = {}
 
-export default GitCard
+export default GitUserCard

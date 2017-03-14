@@ -7,16 +7,16 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import GitSearch from './git-search';
-import GitCard from './git-card';
-import GitProfile from './git-profile';
+import GitSearch from './GitSearch';
+import GitUserCard from './GitUserCard';
+import GitProfile from '../GitProfile/GitProfile';
 
 class GitFun extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      text: 'GitReact',
+      text: 'GitFun',
       username: null,
       result: [],
       error: null,
@@ -143,7 +143,7 @@ class GitFun extends Component {
 
           {
               this.state.result.map(r =>
-                <GitCard onPress={this.onPress.bind(this, r)} key={r.id} git={r} />
+                <GitUserCard onPress={this.onPress.bind(this, r)} key={r.id} git={r} />
               )
           }
 
