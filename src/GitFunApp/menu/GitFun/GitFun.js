@@ -62,6 +62,9 @@ class GitFun extends Component {
     let value = this.state.username;
 
     if (!value) {
+      this.setState({
+        result: []
+      });
       return;
     }
 
@@ -137,16 +140,32 @@ class GitFun extends Component {
           ) : null
         }
 
-        <ScrollView ref={(scrollView) => { _scrollView = scrollView; }} style={{flex: 1}}>
-
-          {
-              this.state.result.map(r =>
-                <GitUserCard onPress={this.onPress.bind(this, r)} key={r.id} git={r} />
-              )
-          }
-
-          {
-            this.state.result.length === 0 ? null :
+        {
+          this.state.result.length === 0 ? (
+            <View style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: 20,
+              backgroundColor: 'skyblue'
+            }}>
+              <Text style={{
+                fontSize: 18,
+                textAlign: 'center',
+                color: 'white'
+              }}>Start by typing username and press enter!</Text>
+            </View>
+          ) :
+          (
+            <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}
+              style={{
+                flex: 1
+              }}>
+              {
+                this.state.result.map(r =>
+                  <GitUserCard onPress={this.onPress.bind(this, r)} key={r.id} git={r} />
+                )
+              }
               <View style={{
                 flex: 1,
                 marginTop: 20,
@@ -161,9 +180,9 @@ class GitFun extends Component {
                 }}>Back to top</Text>
               </TouchableHighlight>
             </View>
-          }
-
-        </ScrollView>
+            </ScrollView>
+          )
+        }
       </View>
     )
   }
@@ -178,7 +197,7 @@ const styles = StyleSheet.create({
   info: {
     flex: 0,
     padding: 5,
-    backgroundColor: 'skyblue'
+    backgroundColor: 'deepskyblue'
   },
   backToTop: {
     width: 300,
