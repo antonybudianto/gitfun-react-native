@@ -73,7 +73,6 @@ class GitFun extends Component {
 
     const filter = this.generateFilter();
     const endpoint = `https://api.github.com/search/users?q=${value}${filter}`;
-    console.log(endpoint);
 
     fetch(endpoint, {
       method: 'GET'
@@ -86,7 +85,6 @@ class GitFun extends Component {
     }, err => Promise.reject(err))
     .then(
       res => {
-        console.log(res);
         this.setState({
           result: res.items,
           info: res.items.length === 0 ? 'No data found' : null
@@ -110,11 +108,11 @@ class GitFun extends Component {
     return (
       <View style={{
         flex: 1,
-        marginTop: 60
+        marginTop: 80
       }}>
         <View style={{
           flex: 0,
-          height: 80,
+          height: 100,
           borderBottomColor: 'gray'
         }}>
           <GitSearch placeholder="Search by users or organizations"

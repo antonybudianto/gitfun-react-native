@@ -37,13 +37,11 @@ class GitFollower extends Component {
     fetch(`https://api.github.com/users/${this.props.profile.login}/followers`)
     .then(response => response.json())
     .then(res => {
-      console.log(res);
       this.setState({
         followers: res,
         loading: false
       });
     }, err => {
-      console.log(err);
       this.setState({
         error: err,
         loading: false

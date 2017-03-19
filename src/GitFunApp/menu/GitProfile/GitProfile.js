@@ -45,7 +45,6 @@ class GitProfile extends Component {
     fetch(`https://api.github.com/users/${profile.login}`)
     .then(res => res.json())
     .then(res => {
-      console.log(res);
       this.setState({
         detail: res,
         loading: false

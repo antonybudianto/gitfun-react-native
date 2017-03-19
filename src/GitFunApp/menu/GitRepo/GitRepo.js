@@ -32,7 +32,6 @@ class GitRepo extends Component {
         loading: false
       });
     }, err => {
-      console.log(err);
       this.setState({
         error: err,
         loading: false
