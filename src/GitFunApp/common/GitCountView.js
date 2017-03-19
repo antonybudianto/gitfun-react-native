@@ -15,6 +15,7 @@ const GitCountView = ({count, label}) =>
       textAlign: 'center'
     }}>{count}</Text>
     <Text style={{
+      fontSize: 11,
       color: 'white',
       textAlign: 'center'
     }}>{label}</Text>
