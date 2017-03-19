@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import GitRepoCard from './GitRepoCard';
+import GitCountView from '../../common/GitCountView';
 
 class GitRepo extends Component {
   constructor(props) {
@@ -40,11 +41,26 @@ class GitRepo extends Component {
   }
 
   render() {
+    const repos = this.state.repos.filter(repo => !repo.fork);
+    const totalStars = repos.reduce((acc,cur) => acc + cur['stargazers_count'], 0)
+    const totalForks = repos.reduce((acc, cur) => acc + cur['forks'], 0);
+    const totalOpenIssues = repos.reduce((acc, cur) => acc + cur['open_issues'], 0);
+    const languages = repos.reduce((acc, cur) => {
+      if (!cur['language']) return acc;
+      if (!acc[cur['language']]) {
+        acc[cur['language']] = 0;
+      }
+      acc[cur['language']]++;
+      return acc;
+    }, {});
+    const langList = Object.entries(languages);
+
     return (
       <View style={{
         flex: 1,
         marginTop: 60
       }}>
+
         <View style={{
           flex: 0,
           flexDirection: 'row',
@@ -64,22 +80,22 @@ class GitRepo extends Component {
             fontSize: 14,
             color: 'white'
           }}>{this.props.profile.login}</Text>
-          <View>
-            <Text style={{color: 'white'}}>
-            {this.state.repos
-                .filter(repo => !repo.fork)
-                .reduce((a,b) => a+b['stargazers_count'], 0)
-              } stars</Text>
-            <Text style={{color: 'white'}}>
-            {this.state.repos
-                .filter(repo => !repo.fork).length
-              } repos</Text>
-            <Text style={{color: 'white'}}>
-            {this.state.repos
-              .filter(repo => repo.fork).length
-            } forks</Text>
-          </View>
         </View>
+
+        <View style={{
+          flex: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 10,
+          backgroundColor: 'deepskyblue'
+        }}>
+          <GitCountView count={repos.length} label="repos" />
+          <GitCountView count={totalStars} label="stars" />
+          <GitCountView count={totalForks} label="forks" />
+          <GitCountView count={totalOpenIssues} label="issues" />
+          <GitCountView count={langList.length} label="languages" />
+        </View>
+
         <ScrollView style={{
           flex: 1,
           padding: 5,
