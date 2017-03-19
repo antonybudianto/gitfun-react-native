@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   Navigator,
   Text,
   StyleSheet,
@@ -12,7 +13,12 @@ const APP_NAVBAR_TITLE = 'GitFun';
 const styles = StyleSheet.create({
   leftNavButtonText: {
     padding: 10,
-    color: 'white'
+    color: 'white',
+    ...Platform.select({
+      android: {
+        paddingTop: 35
+      }
+    })
   },
   rightNavButtonText: {
     padding: 10,
@@ -22,7 +28,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     padding: 10,
-    color: 'white'
+    color: 'white',
+    ...Platform.select({
+      android: {
+        paddingTop: 20
+      }
+    })
   }
 });
 
@@ -61,7 +72,8 @@ export default class GitFunApp extends Component {
         navigationBar={
           <Navigator.NavigationBar
             style={{
-              backgroundColor: 'skyblue'
+              backgroundColor: 'skyblue',
+              paddingTop: 70
             }}
             routeMapper={ NavigationBarRouteMapper } />
         }
