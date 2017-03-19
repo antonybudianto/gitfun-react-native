@@ -111,12 +111,11 @@ class GitFun extends Component {
     return (
       <View style={{
         flex: 1,
-        marginTop: 80
+        marginTop: 75
       }}>
         <View style={{
           flex: 0,
-          height: 100,
-          borderBottomColor: 'gray'
+          height: 100
         }}>
           <GitSearch placeholder="Search by users or organizations"
             onSubmitEditing={this.searchGH.bind(this)}
