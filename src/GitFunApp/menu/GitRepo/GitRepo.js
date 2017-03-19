@@ -86,7 +86,7 @@ class GitRepo extends Component {
           flex: 0,
           flexDirection: 'row',
           alignItems: 'center',
-          padding: 10,
+          padding: 5,
           backgroundColor: 'deepskyblue'
         }}>
           <GitCountView count={repos.length} label="repos" />
