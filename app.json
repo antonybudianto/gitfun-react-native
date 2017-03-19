@@ -1,5 +1,9 @@
 {
   "expo": {
+    "name": "gitfun",
+    "description": "Simple GitHub user summary",
+    "privacy": "public",
+    "version": "0.1.0",
     "sdkVersion": "14.0.0"
   }
 }
