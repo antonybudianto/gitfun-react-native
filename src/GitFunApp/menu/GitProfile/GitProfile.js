@@ -13,21 +13,7 @@ import GitRepo from '../GitRepo/GitRepo';
 import GitFollower from '../GitFollower/GitFollower';
 import LoadingView from '../../common/LoadingView';
 
-const GitCountView = ({count, label}) =>
-  <View style={{
-    flex: 1
-  }}>
-    <Text style={{
-      fontWeight: 'bold',
-      fontSize: 18,
-      color: 'white',
-      textAlign: 'center'
-    }}>{count}</Text>
-    <Text style={{
-      color: 'white',
-      textAlign: 'center'
-    }}>{label}</Text>
-  </View>
+import GitCountView from '../../common/GitCountView';
 
 class GitProfile extends Component {
   constructor(props) {
