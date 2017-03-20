@@ -5,7 +5,8 @@ import {
     Text,
     Image,
     TouchableHighlight,
-    StyleSheet
+    StyleSheet,
+    Button
 } from 'react-native';
 
 import GitProfile from '../GitProfile/GitProfile';
@@ -18,9 +19,13 @@ class GitFollower extends Component {
     this.state = {
       followers: [],
       loading: true,
-      error: null
+      error: null,
+      page: 1,
+      lastPage: false
     };
+  }
 
+  componentDidMount() {
     this.fetchFollowers();
   }
 
@@ -34,19 +39,32 @@ class GitFollower extends Component {
   }
 
   fetchFollowers() {
-    fetch(`https://api.github.com/users/${this.props.profile.login}/followers`)
+    this.setState({
+      loading: true
+    });
+
+    fetch(`https://api.github.com/users/${this.props.profile.login}/followers?page=${this.state.page}`)
     .then(response => response.json())
-    .then(res => {
-      this.setState({
-        followers: res,
+    .then(result => {
+      this.setState((state) => ({
+        lastPage: result.length === 0,
+        followers: [...state.followers, ...result],
         loading: false
-      });
+      }));
     }, err => {
       this.setState({
         error: err,
         loading: false
       });
     });
+  }
+
+  loadMore() {
+    this.setState((state) => {
+      return {
+        page: state.page + (this.state.lastPage ? 0 : 1)
+      };
+    }, () => this.fetchFollowers());
   }
 
   render() {
@@ -84,17 +102,20 @@ class GitFollower extends Component {
           backgroundColor: 'white'
         }}>
           {
-            this.state.loading ? <Text style={{
-                textAlign: 'center',
-                marginTop: 10
-            }}>Loading followers data...</Text> : null
-          }
-          {
             this.state.followers
             .map(follower =>
               <GitUserCard onPress={this.goToProfile.bind(this, follower)} key={follower.id} git={follower} />
             )
           }
+
+          <View style={{
+            marginTop: 20,
+            marginBottom: 20
+          }}>
+             <Button disabled={this.state.loading}
+              onPress={this.loadMore.bind(this)}
+              title={this.state.loading ? 'Loading...' : 'Load more'} />
+          </View>
         </ScrollView>
       </View>
     );
