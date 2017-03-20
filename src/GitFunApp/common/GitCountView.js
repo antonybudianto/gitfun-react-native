@@ -13,7 +13,7 @@ const GitCountView = ({count, label}) =>
       fontSize: 18,
       color: 'white',
       textAlign: 'center'
-    }}>{count}</Text>
+    }}>{ (count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count) }</Text>
     <Text style={{
       fontSize: 11,
       color: 'white',
