@@ -5,7 +5,8 @@ import {
     Text,
     Image,
     TouchableHighlight,
-    StyleSheet
+    StyleSheet,
+    Button
 } from 'react-native';
 
 import GitRepoCard from './GitRepoCard';
@@ -17,27 +18,44 @@ class GitRepo extends Component {
 
     this.state = {
       repos: [],
-      loading: true,
-      error: null
+      loading: false,
+      error: null,
+      page: 1,
+      lastPage: false
     };
+  }
 
+  componentDidMount() {
     this.fetchRepos();
   }
 
   fetchRepos() {
-    fetch(`https://api.github.com/users/${this.props.profile.login}/repos`)
+    this.setState({
+      loading: true
+    });
+
+    fetch(`https://api.github.com/users/${this.props.profile.login}/repos?page=${this.state.page}`)
     .then(response => response.json())
-    .then(res => {
-      this.setState({
-        repos: res,
+    .then(result => {
+      this.setState((state) => ({
+        lastPage: result.length === 0,
+        repos: [...state.repos, ...result],
         loading: false
-      });
+      }));
     }, err => {
       this.setState({
         error: err,
         loading: false
       });
     });
+  }
+
+  loadMore() {
+    this.setState((state) => {
+      return {
+        page: state.page + (this.state.lastPage ? 0 : 1)
+      };
+    }, () => this.fetchRepos());
   }
 
   render() {
@@ -102,12 +120,6 @@ class GitRepo extends Component {
           backgroundColor: 'white'
         }}>
           {
-            this.state.loading ? <Text style={{
-                textAlign: 'center',
-                marginTop: 10
-            }}>Loading repository data...</Text> : null
-          }
-          {
 
             this.state.repos
             .filter(repo => !repo.fork)
@@ -116,6 +128,13 @@ class GitRepo extends Component {
             )
 
           }
+          <View style={{
+            marginBottom: 20
+          }}>
+             <Button disabled={this.state.loading}
+              onPress={this.loadMore.bind(this)}
+              title={this.state.loading ? 'Loading...' : 'Load more'} />
+          </View>
         </ScrollView>
       </View>
     );
