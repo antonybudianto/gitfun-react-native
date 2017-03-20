@@ -3,7 +3,7 @@
     "name": "gitfun",
     "description": "Simple GitHub user summary",
     "privacy": "public",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "sdkVersion": "15.0.0"
   }
 }
