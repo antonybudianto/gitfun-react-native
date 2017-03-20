@@ -3,6 +3,7 @@
     "name": "gitfun",
     "description": "Simple GitHub user summary",
     "privacy": "public",
+    "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=6ba4e88b-69a4-4997-87f4-8af25028244e",
     "version": "0.2.0",
     "sdkVersion": "15.0.0"
   }
