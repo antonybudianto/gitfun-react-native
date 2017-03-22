@@ -2036,9 +2036,9 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-expo@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-15.0.2.tgz#618026c51b127670cfde02e5a6b9e138f796ad41"
+expo@15.1.2:
+  version "15.1.2"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-15.1.2.tgz#2965b2b4f3a3e62d2d401146000629df0df263c8"
   dependencies:
     "@expo/vector-icons" "^4.0.0"
     babel-preset-airbnb "^2.2.3"
@@ -5417,11 +5417,7 @@ whatwg-encoding@^1.0.1:
   dependencies:
     iconv-lite "0.4.13"
 
-whatwg-fetch@>=0.10.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
-
-whatwg-fetch@^1.0.0:
+whatwg-fetch@>=0.10.0, whatwg-fetch@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-1.1.1.tgz#ac3c9d39f320c6dce5339969d054ef43dd333319"
 
