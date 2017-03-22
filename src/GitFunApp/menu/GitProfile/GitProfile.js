@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
-    View,
-    ScrollView,
-    Text,
-    Image,
-    TouchableHighlight,
-    StyleSheet
+  View,
+  ScrollView,
+  Text,
+  Image,
+  TouchableHighlight,
+  StyleSheet
 } from 'react-native';
 
 import GitMenu from '../../common/GitMenu';
@@ -69,9 +69,17 @@ class GitProfile extends Component {
   }
 
   render() {
-    return this.state.loading ?
-      <LoadingView text={`Loading @${this.props.profile.login} profile...`} /> :
-    (
+    if (this.state.loading) {
+      return (
+        <LoadingView text={`Loading @${this.props.profile.login} profile...`} />
+      );
+    } else if (!this.state.detail) {
+      return (
+        <LoadingView text={`@${this.props.profile.login} not found`} />
+      );
+    }
+
+    return (
       <View style={{
         flex: 1,
         marginTop: 64
