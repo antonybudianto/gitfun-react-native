@@ -2,9 +2,11 @@
   "expo": {
     "name": "gitfun",
     "description": "Simple GitHub user summary",
+    "slug": "gitfun",
     "privacy": "public",
     "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=6ba4e88b-69a4-4997-87f4-8af25028244e",
     "loading": {
+      "hideExponentText": true,
       "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=6ba4e88b-69a4-4997-87f4-8af25028244e"
     },
     "version": "0.2.0",
