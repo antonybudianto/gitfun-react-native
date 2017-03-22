@@ -21,13 +21,19 @@ class GitProfile extends Component {
 
     this.state = {
       detail: null,
-      loading: true
+      loading: false
     };
+  }
 
+  componentDidMount() {
     this.fetchProfile(this.props.profile);
   }
 
   fetchProfile(profile) {
+    this.setState({
+      loading: true
+    });
+
     fetch(`https://api.github.com/users/${profile.login}`)
     .then(res => res.json())
     .then(res => {
