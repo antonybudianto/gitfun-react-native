@@ -98,6 +98,7 @@ class GitFollower extends Component {
         </View>
         <ScrollView style={{
           flex: 1,
+          padding: 5,
           backgroundColor: 'white'
         }}>
           {

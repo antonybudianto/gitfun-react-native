@@ -9,8 +9,8 @@ import {
 const GitUserCard = ({git, onPress}) =>
   <TouchableHighlight underlayColor={'orange'} onPress={onPress}>
     <View style={{
-        padding: 5,
         flex: 1,
+        marginBottom: 5,
         flexDirection: 'row',
         alignItems: 'center'
       }}>
