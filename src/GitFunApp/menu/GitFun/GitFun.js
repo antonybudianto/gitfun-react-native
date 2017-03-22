@@ -9,7 +9,6 @@ import {
 
 import GitSearch from './GitSearch';
 import GitUserCard from './GitUserCard';
-import GitProfile from '../GitProfile/GitProfile';
 
 class GitFun extends Component {
 
@@ -27,7 +26,7 @@ class GitFun extends Component {
 
   onPress(r) {
     this.props.navigator.push({
-      component: GitProfile,
+      screen: 'profile',
       passProps: {
         profile: r
       }

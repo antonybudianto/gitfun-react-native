@@ -9,7 +9,6 @@ import {
     Button
 } from 'react-native';
 
-import GitProfile from '../GitProfile/GitProfile';
 import GitUserCard from '../GitFun/GitUserCard';
 
 class GitFollower extends Component {
@@ -31,7 +30,7 @@ class GitFollower extends Component {
 
   goToProfile(follower) {
     this.props.navigator.push({
-      component: GitProfile,
+      screen: 'profile',
       passProps: {
         profile: follower
       }

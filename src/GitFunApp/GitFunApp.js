@@ -8,6 +8,24 @@ import {
 } from 'react-native'
 
 import GitFun from './menu/GitFun/GitFun';
+import GitProfile from './menu/GitProfile/GitProfile';
+import GitRepo from './menu/GitRepo/GitRepo';
+import GitFollower from './menu/GitFollower/GitFollower';
+
+const screens = {
+  home: {
+    component: GitFun
+  },
+  profile: {
+    component: GitProfile
+  },
+  repo: {
+    component: GitRepo
+  },
+  follower: {
+    component: GitFollower
+  }
+};
 
 const APP_NAVBAR_TITLE = 'GitFun';
 const styles = StyleSheet.create({
@@ -68,7 +86,7 @@ export default class GitFunApp extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{component: GitFun}}
+        initialRoute={{screen: 'home'}}
         navigationBar={
           <Navigator.NavigationBar
             style={{
@@ -78,7 +96,7 @@ export default class GitFunApp extends Component {
             routeMapper={ NavigationBarRouteMapper } />
         }
         renderScene={(route, navigator) =>
-          React.createElement(route.component,
+          React.createElement(screens[route.screen].component,
             { ...this.props, ...route.passProps, route, navigator } )
       }/>
     );

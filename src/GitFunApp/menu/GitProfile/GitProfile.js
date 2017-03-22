@@ -9,10 +9,7 @@ import {
 } from 'react-native';
 
 import GitMenu from '../../common/GitMenu';
-import GitRepo from '../GitRepo/GitRepo';
-import GitFollower from '../GitFollower/GitFollower';
 import LoadingView from '../../common/LoadingView';
-
 import GitCountView from '../../common/GitCountView';
 
 class GitProfile extends Component {
@@ -50,7 +47,7 @@ class GitProfile extends Component {
 
   goToRepos() {
     this.props.navigator.push({
-      component: GitRepo,
+      screen: 'repo',
       title: 'View repositories',
       passProps: {
         profile: this.props.profile
@@ -60,7 +57,7 @@ class GitProfile extends Component {
 
   goToFollowers() {
     this.props.navigator.push({
-      component: GitFollower,
+      screen: 'follower',
       title: 'View followers',
       passProps: {
         profile: this.props.profile
