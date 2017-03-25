@@ -4,10 +4,18 @@ import GitFun from './menu/GitFun/GitFun';
 import GitProfile from './menu/GitProfile/GitProfile';
 import GitRepo from './menu/GitRepo/GitRepo';
 import GitFollower from './menu/GitFollower/GitFollower';
+import GitLogin from './menu/GitLogin/GitLogin';
+import GitDashboard from './menu/GitDashboard/GitDashboard';
 import AppNavigator from './core/AppNavigator/AppNavigator';
 
 const screens = {
-  home: {
+  login: {
+    component: GitLogin
+  },
+  dashboard: {
+    component: GitDashboard
+  },
+  explorer: {
     component: GitFun
   },
   profile: {
@@ -24,7 +32,7 @@ const screens = {
 class GitFunApp extends Component {
   render() {
     return (
-      <AppNavigator initialRoute={{screen: 'home'}} screens={screens}/>
+      <AppNavigator initialRoute={{screen: 'dashboard'}} screens={screens}/>
     );
   }
 };

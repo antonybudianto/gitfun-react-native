@@ -110,7 +110,8 @@ class GitFun extends Component {
     return (
       <View style={{
         flex: 1,
-        marginTop: 75
+        marginTop: 75,
+        backgroundColor: 'white'
       }}>
         <View style={{
           flex: 0,

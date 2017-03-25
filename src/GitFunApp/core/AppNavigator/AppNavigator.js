@@ -15,7 +15,7 @@ class AppNavigator extends Component {
 
     return (
       <Navigator
-        initialRoute={{screen: 'home'}}
+        initialRoute={initialRoute}
         navigationBar={
           <Navigator.NavigationBar
             style={{
