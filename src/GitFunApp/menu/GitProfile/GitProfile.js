@@ -164,11 +164,6 @@ class GitProfile extends Component {
         }}>
           <GitMenu name="View repositories" onPress={this.goToRepos.bind(this)} />
           <GitMenu name="View followers" onPress={this.goToFollowers.bind(this)} />
-          {
-              !this.props.loginData ? null : (
-                <GitMenu name="Logout" onPress={() => {}} />
-              )
-            }
         </ScrollView>
       </View>
     );
