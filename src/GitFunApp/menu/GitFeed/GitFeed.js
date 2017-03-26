@@ -28,7 +28,9 @@ class GitFeed extends Component {
     });
 
     const headers = new Headers();
-    headers.append('Authorization', 'Basic ' + this.props.loginData.encodedKey);
+    console.log(this.props.loginData.token);
+    headers.append('Authorization', 'token ' + this.props.loginData.token);
+    headers.append('Cache-Control', 'no-cache');
     fetch(`https://api.github.com/notifications`, { headers })
     .then(res => res.json())
     .then(result => {
@@ -36,7 +38,6 @@ class GitFeed extends Component {
         loading: false,
         feeds: result
       });
-      console.log(JSON.stringify(result, null, 2));
     });
   }
 

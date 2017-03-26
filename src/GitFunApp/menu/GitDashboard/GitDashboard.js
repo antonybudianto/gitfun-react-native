@@ -51,7 +51,9 @@ class GitDashboard extends Component {
                     this.props.navigator.push({
                       screen: 'profile',
                       passProps: {
-                        profile: this.props.loginData.user,
+                        profile: {
+                          login: this.props.loginData.username
+                        },
                         loginData: this.props.loginData
                       }
                     })

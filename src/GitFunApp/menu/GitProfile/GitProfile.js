@@ -51,6 +51,7 @@ class GitProfile extends Component {
       screen: 'repo',
       title: 'View repositories',
       passProps: {
+        loginData: this.props.loginData,
         profile: this.props.profile
       }
     });
@@ -98,7 +99,7 @@ class GitProfile extends Component {
                   height: 50,
                 }}
               resizeMode={'contain'}
-              source={{uri: this.props.profile['avatar_url']}}
+              source={{uri: this.state.detail['avatar_url']}}
             />
             <Text style={{
               marginTop: 5,

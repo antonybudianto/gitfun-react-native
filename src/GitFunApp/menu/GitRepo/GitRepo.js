@@ -34,7 +34,13 @@ class GitRepo extends Component {
       loading: true
     });
 
-    fetch(`https://api.github.com/users/${this.props.profile.login}/repos?page=${this.state.page}`)
+    const path = this.props.loginData ? `user/repos` : `users/${this.props.profile.login}/repos`;
+    const headers = new Headers();
+    if (this.props.loginData) {
+      headers.append('Authorization', `token ${this.props.loginData.token}`);
+    }
+
+    fetch(`https://api.github.com/${path}?page=${this.state.page}`, { headers })
     .then(response => response.json())
     .then(result => {
       this.setState((state) => ({
@@ -76,30 +82,8 @@ class GitRepo extends Component {
     return (
       <View style={{
         flex: 1,
-        marginTop: 60
+        marginTop: 70
       }}>
-
-        <View style={{
-          flex: 0,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: 10,
-          backgroundColor: 'skyblue'
-        }}>
-          <Image style={{
-                width: 80,
-                height: 50,
-              }}
-            resizeMode={'contain'}
-            source={{uri: this.props.profile['avatar_url']}}
-          />
-          <Text style={{
-            fontSize: 14,
-            color: 'white'
-          }}>{this.props.profile.login}</Text>
-        </View>
-
         <View style={{
           flex: 0,
           flexDirection: 'row',

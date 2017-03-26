@@ -16,17 +16,19 @@ class GitLogin extends Component {
     this.state = {
       username: '',
       password: '',
+      otpCode: '',
+      askOtp: false,
       loading: false,
       error: null
     };
   }
 
-  onChangeUsername(username) {
-    this.setState({username});
+  getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
   }
 
-  onChangePassword(password) {
-    this.setState({password});
+  generateFingerprint() {
+    return this.getRandomArbitrary(0,100) + '-' + this.getRandomArbitrary(50, 100);
   }
 
   login() {
@@ -34,18 +36,39 @@ class GitLogin extends Component {
       loading: true,
       error: null
     });
+
     const key = this.state.username + ':' + this.state.password;
     const encodedKey = base64.encode(key);
     const headers = new Headers();
     headers.append('Authorization', 'Basic ' + encodedKey);
-    fetch(`https://api.github.com/user`, {
+    if (this.state.otpCode) {
+      headers.append('X-GitHub-OTP', this.state.otpCode);
+    }
+    fetch(`https://api.github.com/authorizations`, {
+      method: 'post',
+      body: JSON.stringify({
+        scopes: [
+          'public_repo',
+          'notifications'
+        ],
+        fingerprint: this.generateFingerprint(),
+        note: 'GitFun Beta'
+      }),
       headers
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.headers.map['x-github-otp']) {
+        this.setState({
+          askOtp: true
+        });
+      }
+      return res.json();
+    })
     .then(result => {
       if (result.message) {
         this.setState({
           loading: false,
+          otpCode: '',
           error: result.message
         });
 
@@ -58,12 +81,11 @@ class GitLogin extends Component {
         screen: 'dashboard',
         passProps: {
           loginData: {
-            user: result,
-            encodedKey
+            username: this.state.username,
+            token: result.token
           }
         }
       });
-      console.log(JSON.stringify(result, null, 2))
     },
     err => {
       this.setState({
@@ -80,47 +102,71 @@ class GitLogin extends Component {
         marginTop: 70,
         backgroundColor: 'white'
       }}>
-        <View style={{
-          flex: 0,
-          height: 200,
-          padding: 5,
-          justifyContent: 'center'
-        }}>
-          <TextInput
-            onChangeText={this.onChangeUsername.bind(this)}
-            placeholder="Username"
-            style={{
-              flex: 1,
-              height: 20
-            }} />
-          <TextInput
-            onChangeText={this.onChangePassword.bind(this)}
-            placeholder="Password"
-            secureTextEntry={true}
-            style={{
-              flex: 1,
-              height: 20
-            }} />
-          {
-            !this.state.error ? null :
+        {
+          this.state.askOtp ? (
             <View style={{
-              backgroundColor: 'red',
-              padding: 10,
-              marginBottom: 20
+              flex: 0,
+              height: 50,
+              padding: 5,
+              justifyContent: 'center'
             }}>
-              <Text style={{
-                color: 'white'
-              }}>{this.state.error}</Text>
+              <TextInput
+                value={this.state.otpCode}
+                onChangeText={(otpCode) => this.setState({otpCode})}
+                placeholder="OTP code"
+                style={{
+                  flex: 1,
+                  height: 20
+                }} />
             </View>
-          }
-          <Button style={{
-            marginTop: 20
-          }}
-            color="skyblue"
-            disabled={this.state.loading}
-            onPress={this.login.bind(this)} title={this.state.loading ? 'Loading...' : 'Login to GitHub'} />
+          ) : (
+            <View style={{
+              flex: 0,
+              height: 120,
+              padding: 5,
+              justifyContent: 'center'
+            }}>
+              <TextInput
+                value={this.state.username}
+                onChangeText={(username) => this.setState({username})}
+                placeholder="Username"
+                style={{
+                  flex: 1,
+                  height: 20
+                }} />
+              <TextInput
+                value={this.state.password}
+                onChangeText={(password) => this.setState({password})}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={{
+                  flex: 1,
+                  height: 20
+                }} />
+            </View>
+          )
+        }
 
-        </View>
+        {
+          !this.state.error ? null :
+          <View style={{
+            backgroundColor: 'orange',
+            padding: 10,
+            marginBottom: 20
+          }}>
+            <Text style={{
+              color: 'white'
+            }}>{this.state.error}</Text>
+          </View>
+        }
+
+        <Button style={{
+          marginTop: 20
+        }}
+          color="skyblue"
+          disabled={this.state.loading}
+          onPress={this.login.bind(this)}
+          title={this.state.loading ? 'Loading...' : 'Login to GitHub'} />
       </View>
     );
   }
