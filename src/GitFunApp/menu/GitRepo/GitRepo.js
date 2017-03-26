@@ -107,18 +107,15 @@ class GitRepo extends Component {
           backgroundColor: 'white'
         }}>
           {
-
-            this.state.repos
-            .filter(repo => !repo.fork)
+            repos
             .map(repo =>
               <GitRepoCard key={repo['id']} repo={repo} />
             )
-
           }
           <View style={{
             marginBottom: 20
           }}>
-             <Button disabled={this.state.loading}
+             <Button color="skyblue" disabled={this.state.loading}
               onPress={this.loadMore.bind(this)}
               title={this.state.loading ? 'Loading...' : 'Load more'} />
           </View>

@@ -111,7 +111,7 @@ class GitFollower extends Component {
             marginTop: 20,
             marginBottom: 20
           }}>
-             <Button disabled={this.state.loading}
+             <Button color="skyblue" disabled={this.state.loading}
               onPress={this.loadMore.bind(this)}
               title={this.state.loading ? 'Loading...' : 'Load more'} />
           </View>
