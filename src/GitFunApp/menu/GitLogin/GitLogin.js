@@ -114,6 +114,7 @@ class GitLogin extends Component {
                 value={this.state.otpCode}
                 onChangeText={(otpCode) => this.setState({otpCode})}
                 placeholder="OTP code"
+                secureTextEntry={true}
                 style={{
                   flex: 1,
                   height: 20
