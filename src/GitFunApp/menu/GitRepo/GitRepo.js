@@ -40,7 +40,10 @@ class GitRepo extends Component {
       headers.append('Authorization', `token ${this.props.loginData.token}`);
     }
 
-    fetch(`https://api.github.com/${path}?page=${this.state.page}`, { headers })
+    fetch(`https://api.github.com/${path}?page=${this.state.page}`, {
+      headers,
+      cache: 'no-store'
+    })
     .then(response => response.json())
     .then(result => {
       this.setState((state) => ({

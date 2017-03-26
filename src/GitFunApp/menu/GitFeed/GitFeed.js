@@ -28,10 +28,11 @@ class GitFeed extends Component {
     });
 
     const headers = new Headers();
-    console.log(this.props.loginData.token);
     headers.append('Authorization', 'token ' + this.props.loginData.token);
-    headers.append('Cache-Control', 'no-cache');
-    fetch(`https://api.github.com/notifications`, { headers })
+    fetch(`https://api.github.com/notifications?key=${Date.now()}`, {
+      headers,
+      cache: 'no-store'
+    })
     .then(res => res.json())
     .then(result => {
       this.setState({
@@ -53,7 +54,17 @@ class GitFeed extends Component {
         marginTop: 70,
         backgroundColor: 'white'
       }}>
-
+        {
+          this.state.feeds.length === 0 ?
+          <View style={{
+            marginTop: 20
+          }}>
+          <Text style={{
+            color: 'gray',
+            textAlign: 'center'
+          }}>You don't have notifications!</Text>
+          </View> : null
+        }
         <ScrollView>
         {
           this.state.feeds.map(feed =>
