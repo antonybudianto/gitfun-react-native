@@ -48,7 +48,7 @@ class GitLogin extends Component {
       method: 'post',
       body: JSON.stringify({
         scopes: [
-          'public_repo',
+          'repo',
           'notifications'
         ],
         fingerprint: this.generateFingerprint(),
