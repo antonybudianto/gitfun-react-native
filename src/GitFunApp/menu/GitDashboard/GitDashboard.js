@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  Image,
   ScrollView
 } from 'react-native';
 
@@ -14,8 +15,35 @@ class GitDashboard extends Component {
 
     this.state = {
       loading: false,
-      error: null
+      error: null,
+      user: null
     };
+  }
+
+  componentDidMount() {
+    if (this.props.loginData) {
+      this.fetchUser();
+    }
+  }
+
+  fetchUser() {
+    this.setState({
+      loading: true
+    });
+    const headers = new Headers();
+    headers.append('Authorization', `token ${this.props.loginData.token}`);
+    fetch(`https://api.github.com/user`, {
+      headers,
+      cache: 'no-store'
+    })
+    .then(res => res.json())
+    .then(result => {
+      this.setState({
+        loading: false,
+        user: result
+      });
+      console.log(JSON.stringify(result, null, 2));
+    });
   }
 
   goToExplore() {
@@ -37,11 +65,30 @@ class GitDashboard extends Component {
         marginTop: 70,
         backgroundColor: 'skyblue'
       }}>
+        {
+          !this.state.user ? null : (
+            <View style={{
+              padding: 10,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <Image style={{
+                width: 50, height: 50
+              }} resizeMode={'contain'} source={{uri: this.state.user.avatar_url}} />
+              <Text style={{
+                color: 'white',
+                fontWeight: 'bold',
+                marginLeft: 10
+              }}>Welcome, {this.state.user.login}</Text>
+            </View>
+          )
+        }
         <ScrollView style={{
           flex: 1,
           backgroundColor: 'white'
         }}>
-          <GitMenu name="Search username" onPress={this.goToExplore.bind(this)} />
+          <GitMenu name="Search users or organizations" onPress={this.goToExplore.bind(this)} />
           {
               !this.props.loginData ? (
                 <GitMenu name="Login to GitHub" onPress={this.goToLogin.bind(this)} />
@@ -51,7 +98,7 @@ class GitDashboard extends Component {
                     this.props.navigator.push({
                       screen: 'profile',
                       passProps: {
-                        profile: {
+                        profile: this.state.user || {
                           login: this.props.loginData.username
                         },
                         loginData: this.props.loginData
@@ -77,16 +124,14 @@ class GitDashboard extends Component {
             }
         </ScrollView>
         <View style={{
-          flex: 1,
-          flexGrow: 1,
           justifyContent: 'center',
-          backgroundColor: 'skyblue'
+          backgroundColor: 'skyblue',
+          padding: 10
         }}>
           <Text style={{
             textAlign: 'center',
-            color: 'white',
-            fontSize: 18
-          }}>Let's start by searching some users!</Text>
+            color: 'white'
+          }}>Made with ❤️ by @antonybudianto</Text>
         </View>
       </View>
     );
