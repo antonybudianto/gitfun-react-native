@@ -74,7 +74,11 @@ class GitDashboard extends Component {
               justifyContent: 'center'
             }}>
               <Image style={{
-                width: 50, height: 50
+                width: 60,
+                height: 60,
+                borderColor: 'white',
+                borderWidth: 1,
+                borderRadius: 10
               }} resizeMode={'contain'} source={{uri: this.state.user.avatar_url}} />
               <Text style={{
                 color: 'white',
