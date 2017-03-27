@@ -9,6 +9,11 @@ import LoadingView from '../../common/LoadingView';
 import GitNotificationCard from './GitNotificationCard';
 
 class GitNotification extends Component {
+
+  static navOptions = {
+    title: 'Notifications'
+  };
+
   constructor(props) {
     super(props);
 
