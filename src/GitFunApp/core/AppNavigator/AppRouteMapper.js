@@ -10,7 +10,10 @@ const APP_NAVBAR_TITLE = 'GitFun';
 const styles = StyleSheet.create({
   leftNavButtonText: {
     padding: 10,
+    marginTop: 5,
+    paddingRight: 25,
     color: 'white',
+    fontSize: 16,
     ...Platform.select({
       android: {
         paddingTop: 35
@@ -19,12 +22,15 @@ const styles = StyleSheet.create({
   },
   rightNavButtonText: {
     padding: 10,
+    marginTop: 5,
+    fontSize: 16,
     color: 'white'
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     padding: 10,
+    marginTop: 5,
     color: 'white',
     ...Platform.select({
       android: {
@@ -34,7 +40,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppNavigationBarRouteMapper = {
+const routeMapper = ({ screens }) => ({
   LeftButton(route, navigator, index, navState) {
     if (index > 0) {
       return (
@@ -47,18 +53,28 @@ const AppNavigationBarRouteMapper = {
     else { return null }
   },
   RightButton(route, navigator, index, navState) {
-    if (route.rightNavButton) return (
-      <TouchableHighlight
-         underlayColor="transparent"
-         onPress={ () => route.rightNavButton.onPress() }>
-         <Text style={ styles.rightNavButtonText }>
-              { route.rightNavButton.text }
-         </Text>
-       </TouchableHighlight>)
+    const { navOptions } = screens[route.screen].component;
+    if (!navOptions) { return; }
+    if (navOptions.rightNavButton) {
+      return (
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={navOptions.rightNavButton.onPress}>
+          <Text style={ styles.rightNavButtonText }>
+            { navOptions.rightNavButton.text }
+          </Text>
+        </TouchableHighlight>
+      );
+    }
   },
   Title(route, navigator, index, navState) {
-    return <Text style={ styles.title }>{route.title || APP_NAVBAR_TITLE}</Text>
+    const { navOptions } = screens[route.screen].component;
+    return (
+      <Text style={ styles.title }>
+        {(navOptions && navOptions.title) || APP_NAVBAR_TITLE}
+      </Text>
+    );
   }
-};
+});
 
-export default AppNavigationBarRouteMapper;
+export default routeMapper;

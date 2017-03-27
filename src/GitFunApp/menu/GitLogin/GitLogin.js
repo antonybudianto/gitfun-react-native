@@ -10,6 +10,10 @@ import * as base64 from 'base-64';
 
 class GitLogin extends Component {
 
+  static navOptions = {
+    title: 'Login'
+  };
+
   constructor(props) {
     super(props);
 

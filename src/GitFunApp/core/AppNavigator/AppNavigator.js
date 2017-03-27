@@ -7,7 +7,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import AppRouteMapper from './AppNavigationBarRouteMapper';
+import routeMapper from './AppRouteMapper';
 
 class AppNavigator extends Component {
   render() {
@@ -22,7 +22,7 @@ class AppNavigator extends Component {
               backgroundColor: 'skyblue',
               paddingTop: 70
             }}
-            routeMapper={ AppRouteMapper } />
+            routeMapper={ routeMapper({ screens }) } />
         }
         renderScene={(route, navigator) =>
           React.createElement(screens[route.screen].component,
