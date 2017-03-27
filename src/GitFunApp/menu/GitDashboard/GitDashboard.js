@@ -42,7 +42,6 @@ class GitDashboard extends Component {
         loading: false,
         user: result
       });
-      console.log(JSON.stringify(result, null, 2));
     });
   }
 
