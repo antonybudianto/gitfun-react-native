@@ -111,7 +111,14 @@ class GitDashboard extends Component {
                   <GitMenu name="My notifications" onPress={() => {
                     this.props.navigator.push({
                       screen: 'notification',
-                      title: 'My notifications',
+                      passProps: {
+                        loginData: this.props.loginData
+                      }
+                    })
+                  }}/>
+                  <GitMenu name="My events" onPress={() => {
+                    this.props.navigator.push({
+                      screen: 'event',
                       passProps: {
                         loginData: this.props.loginData
                       }
