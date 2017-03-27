@@ -6,9 +6,9 @@ import {
 } from 'react-native';
 
 import LoadingView from '../../common/LoadingView';
-import GitFeedCard from './GitFeedCard';
+import GitNotificationCard from './GitNotificationCard';
 
-class GitFeed extends Component {
+class GitNotification extends Component {
   constructor(props) {
     super(props);
 
@@ -45,7 +45,7 @@ class GitFeed extends Component {
   render() {
     if (this.state.loading) {
       return (
-        <LoadingView text="Loading your feeds..." />
+        <LoadingView text="Loading your notifications..." />
       );
     }
     return (
@@ -68,7 +68,7 @@ class GitFeed extends Component {
         <ScrollView>
         {
           this.state.feeds.map(feed =>
-            <GitFeedCard key={feed.id} feed={feed}></GitFeedCard>
+            <GitNotificationCard key={feed.id} feed={feed}></GitNotificationCard>
           )
         }
         </ScrollView>
@@ -77,4 +77,4 @@ class GitFeed extends Component {
   }
 }
 
-export default GitFeed;
+export default GitNotification;

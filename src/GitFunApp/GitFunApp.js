@@ -6,7 +6,7 @@ import GitRepo from './menu/GitRepo/GitRepo';
 import GitFollower from './menu/GitFollower/GitFollower';
 import GitLogin from './menu/GitLogin/GitLogin';
 import GitDashboard from './menu/GitDashboard/GitDashboard';
-import GitFeed from './menu/GitFeed/GitFeed';
+import GitNotification from './menu/GitNotification/GitNotification';
 import AppNavigator from './core/AppNavigator/AppNavigator';
 
 const screens = {
@@ -17,7 +17,7 @@ const screens = {
     component: GitDashboard
   },
   notification: {
-    component: GitFeed
+    component: GitNotification
   },
   explorer: {
     component: GitFun

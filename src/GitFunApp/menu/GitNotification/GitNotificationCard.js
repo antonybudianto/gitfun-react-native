@@ -5,7 +5,7 @@ import {
   Image
 } from 'react-native';
 
-const GitFeedCard = ({ feed }) =>
+const GitNotificationCard = ({ feed }) =>
   <View style={{
     padding: 14,
     flex: 1,
@@ -35,4 +35,4 @@ const GitFeedCard = ({ feed }) =>
     </View>
   </View>
 
-export default GitFeedCard;
+export default GitNotificationCard;
