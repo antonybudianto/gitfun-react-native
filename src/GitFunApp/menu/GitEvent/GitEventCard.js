@@ -30,7 +30,7 @@ const GitEventCard = ({ event }) =>
             <Text style={{
               fontSize: 12,
               color: 'gray'
-            }}>- "{event.payload.comment.body}"</Text>
+            }}>"{event.payload.comment.body}"</Text>
           </View>
         ) : null
       }
@@ -62,12 +62,7 @@ const GitEventCard = ({ event }) =>
           <View>
             <Text style={{
               fontSize: 12
-            }}>{event.actor.login} {event.payload.action} PR #{event.payload.pull_request.number}
-            </Text>
-            <Text style={{
-              fontSize: 12,
-              color: 'gray'
-            }}>{event.payload.pull_request.title}
+            }}>{event.actor.login} {event.payload.action} PR #{event.payload.pull_request.number} "{event.payload.pull_request.title}"
             </Text>
           </View>
         ) : null
@@ -105,7 +100,7 @@ const GitEventCard = ({ event }) =>
           <View>
             <Text style={{
               fontSize: 12
-            }}>{event.actor.login} created {event.payload.ref_type} "{event.payload.ref}"
+            }}>{event.actor.login} created {event.payload.ref_type} "{event.payload.ref || event.repo.name}"
             </Text>
           </View>
         ) : null
@@ -121,7 +116,7 @@ const GitEventCard = ({ event }) =>
             <Text style={{
               fontSize: 12,
               color: 'gray'
-            }}>{event.payload.comment.body}
+            }}>"{event.payload.comment.body}"
             </Text>
           </View>
         ) : null
