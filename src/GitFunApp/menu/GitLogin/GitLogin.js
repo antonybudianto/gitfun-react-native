@@ -162,7 +162,7 @@ class GitLogin extends Component {
           marginTop: 20
         }}
           color="skyblue"
-          disabled={this.state.loading}
+          disabled={this.state.loading || (!this.state.username || !this.state.password)}
           onPress={this.login.bind(this)}
           title={this.state.loading ? 'Loading...' : 'Login to GitHub'} />
       </View>
