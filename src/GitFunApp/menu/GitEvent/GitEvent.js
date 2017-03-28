@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  ScrollView
+  ScrollView,
+  Button
 } from 'react-native';
 
-import LoadingView from '../../common/LoadingView';
 import GitEventCard from './GitEventCard';
 
 class GitEvent extends Component {
@@ -19,7 +19,9 @@ class GitEvent extends Component {
 
     this.state = {
       loading: false,
-      events: []
+      events: [],
+      page: 1,
+      lastPage: false
     };
   }
 
@@ -34,25 +36,30 @@ class GitEvent extends Component {
 
     const headers = new Headers();
     headers.append('Authorization', 'token ' + this.props.loginData.token);
-    fetch(`https://api.github.com/users/${this.props.loginData.username}/received_events?key=${Date.now()}`, {
+    fetch(`https://api.github.com/users/${this.props.loginData.username}/received_events?\
+          key=${Date.now()}&page=${this.state.page}`, {
       headers,
       cache: 'no-store'
     })
     .then(res => res.json())
     .then(result => {
-      this.setState({
-        loading: false,
-        events: result
-      });
+      this.setState((state) => ({
+        lastPage: result.length === 0,
+        events: [...state.events, ...result],
+        loading: false
+      }));
     });
   }
 
+  loadMore() {
+    this.setState((state) => {
+      return {
+        page: state.page + (this.state.lastPage ? 0 : 1)
+      };
+    }, () => this.fetchEvents());
+  }
+
   render() {
-    if (this.state.loading) {
-      return (
-        <LoadingView text="Loading your events..." />
-      );
-    }
     return (
       <View style={{
         flex: 1,
@@ -60,7 +67,7 @@ class GitEvent extends Component {
         backgroundColor: 'white'
       }}>
         {
-          this.state.events.length === 0 ?
+          this.state.events.length === 0 && !this.state.loading ?
           <View style={{
             marginTop: 20
           }}>
@@ -76,6 +83,14 @@ class GitEvent extends Component {
             <GitEventCard key={event.id} event={event}></GitEventCard>
           )
         }
+
+          <View style={{
+            margin: 20
+          }}>
+             <Button color="skyblue" disabled={this.state.loading}
+              onPress={this.loadMore.bind(this)}
+              title={this.state.loading ? 'Loading...' : 'Load more'} />
+          </View>
         </ScrollView>
       </View>
     );
