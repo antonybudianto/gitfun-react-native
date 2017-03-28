@@ -27,14 +27,6 @@ class GitLogin extends Component {
     };
   }
 
-  getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  generateFingerprint() {
-    return this.getRandomArbitrary(0,100) + '-' + this.getRandomArbitrary(50, 100);
-  }
-
   login() {
     this.setState({
       loading: true,
@@ -55,7 +47,7 @@ class GitLogin extends Component {
           'repo',
           'notifications'
         ],
-        fingerprint: this.generateFingerprint(),
+        fingerprint: Date.now(),
         note: 'GitFun Beta'
       }),
       headers
@@ -119,6 +111,7 @@ class GitLogin extends Component {
                 onChangeText={(otpCode) => this.setState({otpCode})}
                 placeholder="OTP code"
                 secureTextEntry={true}
+                keyboardType="numeric"
                 style={{
                   flex: 1,
                   height: 20
