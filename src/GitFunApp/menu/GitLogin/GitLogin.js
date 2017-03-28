@@ -165,6 +165,34 @@ class GitLogin extends Component {
           disabled={this.state.loading || (!this.state.username || !this.state.password)}
           onPress={this.login.bind(this)}
           title={this.state.loading ? 'Loading...' : 'Login to GitHub'} />
+
+        <View style={{
+          flex: 1,
+          marginTop: 40,
+          backgroundColor: 'skyblue',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <Text style={{
+            color: 'white',
+            fontSize: 14,
+            fontWeight: 'bold',
+            padding: 5,
+            textAlign: 'center'
+          }}>Disclaimer</Text>
+          <Text style={{
+            color: 'white',
+            fontSize: 14,
+            padding: 5,
+            textAlign: 'center'
+          }}>By logging in, you'll allow the app to access your repositories and notifications</Text>
+          <Text style={{
+            color: 'white',
+            fontSize: 14,
+            padding: 5,
+            textAlign: 'center'
+          }}>The app doesn't store your credentials, but it's recommended to enable 2FA before login</Text>
+        </View>
       </View>
     );
   }
