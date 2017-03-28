@@ -78,7 +78,7 @@ const GitEventCard = ({ event }) =>
           <View>
             <Text style={{
               fontSize: 12
-            }}>{event.actor.login} {event.payload.action} issue #{event.payload.issue.number}
+            }}>{event.actor.login} {event.payload.action} issue #{event.payload.issue.number} "{event.payload.issue.title}"
             </Text>
             <Text style={{
               fontSize: 12,
@@ -116,7 +116,7 @@ const GitEventCard = ({ event }) =>
           <View>
             <Text style={{
               fontSize: 12
-            }}>{event.actor.login} commented on issue #{event.payload.issue.number}
+            }}>{event.actor.login} commented on issue #{event.payload.issue.number} "{event.payload.issue.title}"
             </Text>
             <Text style={{
               fontSize: 12,
@@ -139,7 +139,7 @@ const GitEventCard = ({ event }) =>
             }}>{event.repo.name}</Text>
             {
               event.payload.commits.slice(0, 3).map(commit =>
-                <View key={commit.id} style={{
+                <View key={commit.sha} style={{
                   marginTop: 5
                 }}>
                   <Text style={{
