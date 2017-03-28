@@ -4,10 +4,10 @@
     "description": "Simple GitHub browser",
     "slug": "gitfun",
     "privacy": "public",
-    "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=6ba4e88b-69a4-4997-87f4-8af25028244e",
+    "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=f17bfb44-9132-4bda-9678-ea4979e8047d",
     "loading": {
       "hideExponentText": true,
-      "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=6ba4e88b-69a4-4997-87f4-8af25028244e"
+      "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=f17bfb44-9132-4bda-9678-ea4979e8047d"
     },
     "version": "0.3.0",
     "sdkVersion": "15.0.0"
