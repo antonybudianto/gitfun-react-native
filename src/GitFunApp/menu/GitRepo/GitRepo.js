@@ -14,6 +14,11 @@ import GitCountView from '../../common/GitCountView';
 import LoadingView from '../../common/LoadingView';
 
 class GitRepo extends Component {
+
+  static navOptions = {
+    title: 'Repositories'
+  };
+
   constructor(props) {
     super(props);
 

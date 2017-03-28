@@ -12,6 +12,11 @@ import {
 import GitUserCard from '../GitFun/GitUserCard';
 
 class GitFollower extends Component {
+
+  static navOptions = {
+    title: 'Followers'
+  };
+
   constructor(props) {
     super(props);
 
