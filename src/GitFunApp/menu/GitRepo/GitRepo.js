@@ -11,7 +11,6 @@ import {
 
 import GitRepoCard from './GitRepoCard';
 import GitCountView from '../../common/GitCountView';
-import LoadingView from '../../common/LoadingView';
 
 class GitRepo extends Component {
 
@@ -87,12 +86,6 @@ class GitRepo extends Component {
       return acc;
     }, {});
     const langList = Object.entries(languages);
-
-    if (this.state.loading) {
-      return (
-        <LoadingView text="Loading repo..." />
-      );
-    }
 
     return (
       <View style={{
