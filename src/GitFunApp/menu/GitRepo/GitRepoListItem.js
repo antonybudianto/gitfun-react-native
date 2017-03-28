@@ -5,7 +5,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-const GitRepoCard = ({repo}) =>
+const GitRepoListItem = ({repo}) =>
     <View style={{
         flex: 1,
         flexDirection: 'row',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   }
 });
 
-GitRepoCard.propTypes = {}
-GitRepoCard.defaultProps = {}
+GitRepoListItem.propTypes = {}
+GitRepoListItem.defaultProps = {}
 
-export default GitRepoCard;
+export default GitRepoListItem;

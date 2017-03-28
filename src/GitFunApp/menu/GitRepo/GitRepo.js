@@ -9,7 +9,7 @@ import {
     Button
 } from 'react-native';
 
-import GitRepoCard from './GitRepoCard';
+import GitRepoListItem from './GitRepoListItem';
 import GitCountView from '../../common/GitCountView';
 
 class GitRepo extends Component {
@@ -114,7 +114,7 @@ class GitRepo extends Component {
           {
             repos
             .map(repo =>
-              <GitRepoCard key={repo['id']} repo={repo} />
+              <GitRepoListItem key={repo['id']} repo={repo} />
             )
           }
           <View style={{
