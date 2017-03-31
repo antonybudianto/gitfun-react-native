@@ -57,7 +57,7 @@ class GitFun extends Component {
     .join('');
   }
 
-  searchGH() {
+  async searchGH() {
     let value = this.state.username;
 
     if (!value) {
@@ -76,32 +76,20 @@ class GitFun extends Component {
     const filter = this.generateFilter();
     const endpoint = `https://api.github.com/search/users?q=${value}${filter}`;
 
-    fetch(endpoint, {
-      method: 'GET'
-    })
-    .then(res => {
-      if (res.status === 200) {
-        return res.json();
-      }
-      return Promise.reject(res);
-    }, err => Promise.reject(err))
-    .then(
-      res => {
-        this.setState({
-          result: res.items,
-          info: res.items.length === 0 ? 'No data found' : null
-        });
-      },
-      err => {
-        err.json().then(e => {
-          this.setState({
-            result: [],
-            error: e.message,
-            info: null
-          });
-        });
-      }
-    );
+    try {
+      const res = await fetch(endpoint, { method: 'GET' });
+      const { items } = await res.json();
+      this.setState({
+        result: items,
+        info: items.length === 0 ? 'No data found' : null
+      });
+    } catch ({message}) {
+      this.setState({
+        result: [],
+        error: message,
+        info: null
+      });
+    }
   }
 
   render() {
