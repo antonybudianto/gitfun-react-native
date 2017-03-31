@@ -27,23 +27,23 @@ class GitProfile extends Component {
     this.fetchProfile(this.props.profile);
   }
 
-  fetchProfile(profile) {
+  async fetchProfile(profile) {
     this.setState({
       loading: true
     });
 
-    fetch(`https://api.github.com/users/${profile.login}`)
-    .then(res => res.json())
-    .then(res => {
+    try {
+      const res = await fetch(`https://api.github.com/users/${profile.login}`);
+      const result = await res.json();
       this.setState({
-        detail: res,
+        detail: result,
         loading: false
       });
-    }, err => {
+    } catch (err) {
       this.setState({
         loading: false
       });
-    });
+    }
   }
 
   goToRepos() {
