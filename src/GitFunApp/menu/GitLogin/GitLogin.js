@@ -27,7 +27,7 @@ class GitLogin extends Component {
     };
   }
 
-  login() {
+  async login() {
     this.setState({
       loading: true,
       error: null
@@ -37,30 +37,33 @@ class GitLogin extends Component {
     const encodedKey = base64.encode(key);
     const headers = new Headers();
     headers.append('Authorization', 'Basic ' + encodedKey);
+
     if (this.state.otpCode) {
       headers.append('X-GitHub-OTP', this.state.otpCode);
     }
-    fetch(`https://api.github.com/authorizations`, {
-      method: 'post',
-      body: JSON.stringify({
-        scopes: [
-          'repo',
-          'notifications'
-        ],
-        fingerprint: Date.now(),
-        note: 'GitFun Beta'
-      }),
-      headers
-    })
-    .then(res => {
-      if (res.headers.map['x-github-otp']) {
+
+    try {
+      let authorizationResult = await fetch(`https://api.github.com/authorizations`, {
+        method: 'post',
+        body: JSON.stringify({
+          scopes: [
+            'repo',
+            'notifications'
+          ],
+          fingerprint: Date.now(),
+          note: 'GitFun Beta'
+        }),
+        headers
+      });
+
+      if (authorizationResult.headers.map['x-github-otp']) {
         this.setState({
           askOtp: true
         });
       }
-      return res.json();
-    })
-    .then(result => {
+
+      let result =  await authorizationResult.json();
+
       if (result.message) {
         this.setState({
           loading: false,
@@ -70,9 +73,11 @@ class GitLogin extends Component {
 
         return;
       }
+
       this.setState({
         loading: false
       });
+
       this.props.navigator.resetTo({
         screen: 'dashboard',
         passProps: {
@@ -82,13 +87,13 @@ class GitLogin extends Component {
           }
         }
       });
-    },
-    err => {
+
+    } catch ({message}) {
       this.setState({
-        error: err.message,
-        loading: false
+        loading: false,
+        error: message
       });
-    });
+    }
   }
 
   render() {
