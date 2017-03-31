@@ -29,26 +29,24 @@ class GitEvent extends Component {
     this.fetchEvents();
   }
 
-  fetchEvents() {
+  async fetchEvents() {
     this.setState({
       loading: true
     });
 
     const headers = new Headers();
     headers.append('Authorization', 'token ' + this.props.loginData.token);
-    fetch(`https://api.github.com/users/${this.props.loginData.username}/received_events?\
+    const res = await fetch(`https://api.github.com/users/${this.props.loginData.username}/received_events?\
           key=${Date.now()}&page=${this.state.page}`, {
       headers,
       cache: 'no-store'
-    })
-    .then(res => res.json())
-    .then(result => {
-      this.setState((state) => ({
-        lastPage: result.length === 0,
-        events: [...state.events, ...result],
-        loading: false
-      }));
     });
+    const result = await res.json();
+    this.setState((state) => ({
+      lastPage: result.length === 0,
+      events: [...state.events, ...result],
+      loading: false
+    }));
   }
 
   loadMore() {
