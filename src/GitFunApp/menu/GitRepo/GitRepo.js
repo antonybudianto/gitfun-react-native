@@ -34,34 +34,35 @@ class GitRepo extends Component {
     this.fetchRepos();
   }
 
-  fetchRepos() {
+  async fetchRepos() {
     this.setState({
       loading: true
     });
 
     const path = this.props.loginData ? `user/repos` : `users/${this.props.profile.login}/repos`;
     const headers = new Headers();
+
     if (this.props.loginData) {
       headers.append('Authorization', `token ${this.props.loginData.token}`);
     }
 
-    fetch(`https://api.github.com/${path}?page=${this.state.page}`, {
-      headers,
-      cache: 'no-store'
-    })
-    .then(response => response.json())
-    .then(result => {
+    try {
+      const res = await fetch(`https://api.github.com/${path}?page=${this.state.page}`, {
+        headers,
+        cache: 'no-store'
+      });
+      const result = await res.json();
       this.setState((state) => ({
         lastPage: result.length === 0,
         repos: [...state.repos, ...result],
         loading: false
       }));
-    }, err => {
+    } catch ({message}) {
       this.setState({
-        error: err,
+        error: message,
         loading: false
       });
-    });
+    }
   }
 
   loadMore() {
@@ -92,19 +93,23 @@ class GitRepo extends Component {
         flex: 1,
         marginTop: 70
       }}>
-        <View style={{
-          flex: 0,
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: 5,
-          backgroundColor: 'deepskyblue'
-        }}>
-          <GitCountView count={repos.length} label="repos" />
-          <GitCountView count={totalStars} label="stars" />
-          <GitCountView count={totalForks} label="forks" />
-          <GitCountView count={totalOpenIssues} label="issues" />
-          <GitCountView count={langList.length} label="languages" />
-        </View>
+        {
+          this.state.loading ? null : (
+          <View style={{
+            flex: 0,
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: 5,
+            backgroundColor: 'deepskyblue'
+          }}>
+            <GitCountView count={repos.length} label="repos" />
+            <GitCountView count={totalStars} label="stars" />
+            <GitCountView count={totalForks} label="forks" />
+            <GitCountView count={totalOpenIssues} label="issues" />
+            <GitCountView count={langList.length} label="languages" />
+          </View>
+          )
+        }
 
         <ScrollView style={{
           flex: 1,
