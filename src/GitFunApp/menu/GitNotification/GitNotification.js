@@ -27,23 +27,21 @@ class GitNotification extends Component {
     this.fetchFeeds();
   }
 
-  fetchFeeds() {
+  async fetchFeeds() {
     this.setState({
       loading: true
     });
 
     const headers = new Headers();
     headers.append('Authorization', 'token ' + this.props.loginData.token);
-    fetch(`https://api.github.com/notifications?key=${Date.now()}`, {
+    const res = await fetch(`https://api.github.com/notifications?key=${Date.now()}`, {
       headers,
       cache: 'no-store'
-    })
-    .then(res => res.json())
-    .then(result => {
-      this.setState({
-        loading: false,
-        feeds: result
-      });
+    });
+    const result = await res.json();
+    this.setState({
+      loading: false,
+      feeds: result
     });
   }
 

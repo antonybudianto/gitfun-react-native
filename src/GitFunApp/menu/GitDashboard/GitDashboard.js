@@ -26,22 +26,20 @@ class GitDashboard extends Component {
     }
   }
 
-  fetchUser() {
+  async fetchUser() {
     this.setState({
       loading: true
     });
     const headers = new Headers();
     headers.append('Authorization', `token ${this.props.loginData.token}`);
-    fetch(`https://api.github.com/user`, {
+    const res = await fetch(`https://api.github.com/user`, {
       headers,
       cache: 'no-store'
-    })
-    .then(res => res.json())
-    .then(result => {
-      this.setState({
-        loading: false,
-        user: result
-      });
+    });
+    const result = await res.json();
+    this.setState({
+      loading: false,
+      user: result
     });
   }
 

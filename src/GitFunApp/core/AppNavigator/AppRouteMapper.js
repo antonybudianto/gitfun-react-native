@@ -9,22 +9,12 @@ import {
 const APP_NAVBAR_TITLE = 'GitFun';
 const styles = StyleSheet.create({
   leftNavButtonText: {
-    padding: 10,
-    marginTop: 5,
-    paddingRight: 25,
     color: 'white',
-    fontSize: 16,
-    ...Platform.select({
-      android: {
-        paddingTop: 35
-      }
-    })
+    fontSize: 16
   },
   rightNavButtonText: {
-    padding: 10,
-    marginTop: 5,
-    fontSize: 16,
-    color: 'white'
+    color: 'white',
+    fontSize: 16
   },
   title: {
     fontSize: 18,
@@ -32,6 +22,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 5,
     color: 'white',
+    textAlign: 'center',
     ...Platform.select({
       android: {
         paddingTop: 20
@@ -45,6 +36,17 @@ const routeMapper = ({ screens }) => ({
     if (index > 0) {
       return (
         <TouchableHighlight
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 60,
+            ...Platform.select({
+              android: {
+                marginTop: 20
+              }
+            })
+          }}
           underlayColor="transparent"
           onPress={() => { if (index > 0) { navigator.pop() } }}>
           <Text style={ styles.leftNavButtonText }>Back</Text>
@@ -58,6 +60,18 @@ const routeMapper = ({ screens }) => ({
     if (navOptions.rightNavButton) {
       return (
         <TouchableHighlight
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 60,
+            backgroundColor: 'pink',
+            ...Platform.select({
+              android: {
+                marginTop: 40
+              }
+            })
+          }}
           underlayColor="transparent"
           onPress={navOptions.rightNavButton.onPress}>
           <Text style={ styles.rightNavButtonText }>

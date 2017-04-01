@@ -42,25 +42,25 @@ class GitFollower extends Component {
     });
   }
 
-  fetchFollowers() {
+  async fetchFollowers() {
     this.setState({
       loading: true
     });
 
-    fetch(`https://api.github.com/users/${this.props.profile.login}/followers?page=${this.state.page}`)
-    .then(response => response.json())
-    .then(result => {
+    try {
+      const res = await fetch(`https://api.github.com/users/${this.props.profile.login}/followers?page=${this.state.page}`);
+      const result = await res.json();
       this.setState((state) => ({
         lastPage: result.length === 0,
         followers: [...state.followers, ...result],
         loading: false
       }));
-    }, err => {
+    } catch ({message}) {
       this.setState({
-        error: err,
+        error: message,
         loading: false
       });
-    });
+    }
   }
 
   loadMore() {
