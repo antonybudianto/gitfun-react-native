@@ -10,6 +10,9 @@
       "icon": "https://firebasestorage.googleapis.com/v0/b/antonybudianto-web.appspot.com/o/icon-gitfun.png?alt=media&token=f17bfb44-9132-4bda-9678-ea4979e8047d"
     },
     "version": "0.3.0",
-    "sdkVersion": "15.0.0"
+    "sdkVersion": "15.0.0",
+    "android": {
+      "package": "com.antonybudianto.gitfun"
+    }
   }
 }
