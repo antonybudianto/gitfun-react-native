@@ -3,10 +3,7 @@ import {
   View,
   ScrollView,
   Text,
-  Image,
-  TouchableHighlight,
-  StyleSheet,
-  Button
+  Image
 } from 'react-native';
 
 import GitMenu from '../../common/GitMenu';
