@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import {
   View,
   ScrollView,
-  Button
+  Button,
+  Text
 } from 'react-native';
 
-import GitPullRequestListItem from './GitPullRequestListItem';
+import GitPullRequestCommentListItem from './GitPullRequestCommentListItem';
 
-class GitPullRequest extends Component {
+class GitPullRequestComment extends Component {
 
   static navOptions = {
-    title: 'View pull requests'
+    title: 'View pull request comments'
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      pullRequests: [],
+      pullRequestComments: [],
       loading: false,
       error: null,
       page: 1,
@@ -25,27 +26,19 @@ class GitPullRequest extends Component {
     };
   }
 
-  goToPullRequestComment(pr) {
-    const { loginData, ownerName, repoName } = this.props;
-    this.props.navigator.push({
-      screen: 'pullRequestComment',
-      passProps: {
-        loginData, ownerName, repoName,
-        pullRequestNumber: pr.number
-      }
-    })
-  }
+  goToPR(pr) {}
 
   componentDidMount() {
-    this.fetchPullRequests();
+    this.fetchPullRequestComments();
   }
 
-  async fetchPullRequests() {
+  async fetchPullRequestComments() {
     this.setState({
       loading: true
     });
 
-    const path = `repos/${this.props.ownerName}/${this.props.repoName}/pulls`;
+    const path = `repos/${this.props.ownerName}/${this.props.repoName}/pulls/\
+      ${this.props.pullRequestNumber}/comments`;
     const headers = new Headers();
 
     if (this.props.loginData) {
@@ -61,7 +54,7 @@ class GitPullRequest extends Component {
       console.log(JSON.stringify(result[0], null, 2))
       this.setState((state) => ({
         lastPage: result.length === 0,
-        pullRequests: [...state.pullRequests, ...result],
+        pullRequestComments: [...state.pullRequestComments, ...result],
         loading: false
       }));
     } catch ({message}) {
@@ -77,24 +70,38 @@ class GitPullRequest extends Component {
       return {
         page: state.page + (this.state.lastPage ? 0 : 1)
       };
-    }, () => this.fetchPullRequests());
+    }, () => this.fetchPullRequestComments());
   }
 
   render() {
     return (
       <View style={{
         flex: 1,
-        marginTop: 70
+        marginTop: 70,
+        backgroundColor: 'white'
       }}>
+        {
+          this.state.loading ||
+          this.state.pullRequestComments.length !== 0 ? null : (
+            <Text style={{
+              color: 'gray',
+              textAlign: 'center',
+              fontStyle: 'italic',
+              margin: 20
+            }}>No comments posted yet</Text>
+          )
+        }
         <ScrollView style={{
           flex: 1,
           padding: 5,
           backgroundColor: 'white'
         }}>
           {
-            this.state.pullRequests
-            .map(pullRequest =>
-              <GitPullRequestListItem onPress={this.goToPullRequestComment.bind(this, pullRequest)} key={pullRequest['id']} pullRequest={pullRequest} />
+            this.state.pullRequestComments
+            .map(pullRequestComment =>
+              <GitPullRequestCommentListItem onPress={this.goToPR.bind(this, pullRequestComment)}
+                key={pullRequestComment['id']}
+                pullRequestComment={pullRequestComment} />
             )
           }
           <View style={{
@@ -110,7 +117,7 @@ class GitPullRequest extends Component {
   }
 }
 
-GitPullRequest.propTypes = {}
-GitPullRequest.defaultProps = {}
+GitPullRequestComment.propTypes = {}
+GitPullRequestComment.defaultProps = {}
 
-export default GitPullRequest;
+export default GitPullRequestComment;

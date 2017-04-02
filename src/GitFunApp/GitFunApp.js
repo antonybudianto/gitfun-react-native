@@ -11,6 +11,7 @@ import GitNotification from './menu/GitNotification/GitNotification';
 import GitEvent from './menu/GitEvent/GitEvent';
 import AppNavigator from './core/AppNavigator/AppNavigator';
 import GitPullRequest from './menu/GitRepo/GitPullRequest/GitPullRequest';
+import GitPullRequestComment from './menu/GitRepo/GitPullRequest/GitPullRequestComment/GitPullRequestComment';
 
 const screens = {
   login: {
@@ -42,6 +43,9 @@ const screens = {
   },
   pullRequest: {
     component: GitPullRequest
+  },
+  pullRequestComment: {
+    component: GitPullRequestComment
   }
 };
 
