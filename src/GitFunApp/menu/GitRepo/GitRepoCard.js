@@ -24,7 +24,8 @@ class GitRepoCard extends Component {
 
     this.state = {
       repo: null,
-      loading: false
+      loading: false,
+      error: null
     };
   }
 
@@ -52,9 +53,10 @@ class GitRepoCard extends Component {
         repo: result,
         loading: false
       });
-    } catch (err) {
+    } catch (error) {
       this.setState({
-        loading: false
+        loading: false,
+        error
       });
     }
   }
@@ -67,6 +69,10 @@ class GitRepoCard extends Component {
     } else if (!this.state.repo) {
       return (
         <LoadingView text={`@${this.props.repoName} not found`} />
+      );
+    } else if (this.state.error) {
+      return (
+        <LoadingView text="Failed to load repo. Please try again later." />
       );
     }
 
