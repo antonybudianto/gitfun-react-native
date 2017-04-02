@@ -38,11 +38,10 @@ class GitRepoCard extends Component {
     this.setState({
       loading: true
     });
-    console.log(ownerName, repoName);
+
     try {
       const res = await fetch(`https://api.github.com/repos/${ownerName}/${repoName}`);
       const result = await res.json();
-      console.log(JSON.stringify(result, null, 2));
       this.setState({
         repo: result,
         loading: false
@@ -55,8 +54,6 @@ class GitRepoCard extends Component {
   }
 
   render() {
-    // GitRepoCard.navOptions.title = `${this.props.ownerName}/${this.props.repoName}`;
-
     if (this.state.loading) {
       return (
         <LoadingView text={`Loading ${this.props.ownerName}/${this.props.repoName}...`} />
