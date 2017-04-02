@@ -104,23 +104,19 @@ class GitRepo extends Component {
         flex: 1,
         marginTop: 70
       }}>
-        {
-          this.state.loading ? null : (
-          <View style={{
-            flex: 0,
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 5,
-            backgroundColor: 'deepskyblue'
-          }}>
-            <GitCountView count={repos.length} label="repos" />
-            <GitCountView count={totalStars} label="stars" />
-            <GitCountView count={totalForks} label="forks" />
-            <GitCountView count={totalOpenIssues} label="issues" />
-            <GitCountView count={langList.length} label="languages" />
-          </View>
-          )
-        }
+        <View style={{
+          flex: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 5,
+          backgroundColor: 'deepskyblue'
+        }}>
+          <GitCountView count={repos.length} label="repos" />
+          <GitCountView count={totalStars} label="stars" />
+          <GitCountView count={totalForks} label="forks" />
+          <GitCountView count={totalOpenIssues} label="issues" />
+          <GitCountView count={langList.length} label="languages" />
+        </View>
 
         <ScrollView style={{
           flex: 1,
