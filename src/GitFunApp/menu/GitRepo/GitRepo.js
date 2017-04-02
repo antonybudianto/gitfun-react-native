@@ -34,6 +34,16 @@ class GitRepo extends Component {
     this.fetchRepos();
   }
 
+  goToRepoCard(repo) {
+    this.props.navigator.push({
+      screen: 'repoCard',
+      passProps: {
+        ownerName: repo.owner.login,
+        repoName: repo.name
+      }
+    });
+  }
+
   async fetchRepos() {
     this.setState({
       loading: true
@@ -119,7 +129,7 @@ class GitRepo extends Component {
           {
             repos
             .map(repo =>
-              <GitRepoListItem key={repo['id']} repo={repo} />
+              <GitRepoListItem onPress={this.goToRepoCard.bind(this, repo)} key={repo['id']} repo={repo} />
             )
           }
           <View style={{

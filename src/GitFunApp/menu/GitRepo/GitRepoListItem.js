@@ -2,19 +2,24 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
-const GitRepoListItem = ({repo}) =>
+const GitRepoListItem = ({repo, onPress}) =>
+  <TouchableHighlight
+    style={{
+      flex: 1,
+      borderBottomColor: 'lightgray',
+      borderBottomWidth: 1
+    }}
+    underlayColor="orange" onPress={onPress}>
     <View style={{
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor: 'white',
         padding: 5,
-        marginBottom: 10,
-        borderBottomColor: 'lightgray',
-        borderBottomWidth: 1
+        marginBottom: 10
         }} key={repo.id}>
         <View style={{
             flex:1,
@@ -32,6 +37,7 @@ const GitRepoListItem = ({repo}) =>
             <Text style={styles.repoInfoText}>{repo['language']}</Text>
         </View>
     </View>
+  </TouchableHighlight>
 
 const styles = StyleSheet.create({
   repoInfoText: {

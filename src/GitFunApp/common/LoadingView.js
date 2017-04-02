@@ -4,18 +4,19 @@ import {
     Text
 } from 'react-native';
 
-const LoadingView = ({text}) =>
-    <View style={{
-        padding: 10,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'skyblue'
-        }}>
-        <Text style={{
-            color: 'white',
-            fontSize: 20
-        }}>{ text || 'Loading...' }</Text>
-    </View>
+const LoadingView = ({text, fontSize = 20}) =>
+  <View style={{
+    padding: 10,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'skyblue'
+    }}>
+    <Text style={{
+        fontSize,
+        color: 'white',
+        textAlign: 'center'
+    }}>{ text || 'Loading...' }</Text>
+  </View>
 
 export default LoadingView;

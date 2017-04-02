@@ -84,7 +84,7 @@ const routeMapper = ({ screens }) => ({
   Title(route, navigator, index, navState) {
     const { navOptions } = screens[route.screen].component;
     return (
-      <Text style={ styles.title }>
+      <Text style={[styles.title, ((navOptions && navOptions.titleStyle) || {})]}>
         {(navOptions && navOptions.title) || APP_NAVBAR_TITLE}
       </Text>
     );

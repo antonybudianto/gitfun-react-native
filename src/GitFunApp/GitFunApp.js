@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import GitFun from './menu/GitFun/GitFun';
 import GitProfile from './menu/GitProfile/GitProfile';
 import GitRepo from './menu/GitRepo/GitRepo';
+import GitRepoCard from './menu/GitRepo/GitRepoCard';
 import GitFollower from './menu/GitFollower/GitFollower';
 import GitLogin from './menu/GitLogin/GitLogin';
 import GitDashboard from './menu/GitDashboard/GitDashboard';
@@ -31,6 +32,9 @@ const screens = {
   },
   repo: {
     component: GitRepo
+  },
+  repoCard: {
+    component: GitRepoCard
   },
   follower: {
     component: GitFollower
