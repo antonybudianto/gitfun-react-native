@@ -10,7 +10,7 @@ const GitNotificationCard = ({ feed }) =>
     padding: 14,
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderBottomColor: 'lightgray',
     borderBottomWidth: 1
   }}>
