@@ -40,7 +40,13 @@ class GitRepoCard extends Component {
     });
 
     try {
-      const res = await fetch(`https://api.github.com/repos/${ownerName}/${repoName}`);
+      const headers = new Headers();
+      if (this.props.loginData) {
+        headers.append('Authorization', `token ${this.props.loginData.token}`);
+      }
+      const res = await fetch(`https://api.github.com/repos/${ownerName}/${repoName}`, {
+        headers
+      });
       const result = await res.json();
       this.setState({
         repo: result,

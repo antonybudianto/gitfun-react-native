@@ -39,7 +39,8 @@ class GitRepo extends Component {
       screen: 'repoCard',
       passProps: {
         ownerName: repo.owner.login,
-        repoName: repo.name
+        repoName: repo.name,
+        loginData: this.props.loginData
       }
     });
   }
