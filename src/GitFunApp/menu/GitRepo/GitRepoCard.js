@@ -30,7 +30,16 @@ class GitRepoCard extends Component {
     this.fetchRepo(this.props.ownerName, this.props.repoName);
   }
 
-  goToPR() {}
+  goToPR() {
+    this.props.navigator.push({
+      screen: 'pullRequest',
+      passProps: {
+        ownerName: this.props.ownerName,
+        repoName: this.props.repoName,
+        loginData: this.props.loginData
+      }
+    });
+  }
 
   async fetchRepo(ownerName, repoName) {
     this.setState({

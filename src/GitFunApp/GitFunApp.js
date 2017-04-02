@@ -10,6 +10,7 @@ import GitDashboard from './menu/GitDashboard/GitDashboard';
 import GitNotification from './menu/GitNotification/GitNotification';
 import GitEvent from './menu/GitEvent/GitEvent';
 import AppNavigator from './core/AppNavigator/AppNavigator';
+import GitPullRequest from './menu/GitRepo/GitPullRequest/GitPullRequest';
 
 const screens = {
   login: {
@@ -38,6 +39,9 @@ const screens = {
   },
   follower: {
     component: GitFollower
+  },
+  pullRequest: {
+    component: GitPullRequest
   }
 };
 
