@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   ScrollView,
-  Button
+  Button,
+  Text
 } from 'react-native';
 
 import GitPullRequestListItem from './GitPullRequestListItem';
@@ -84,8 +85,20 @@ class GitPullRequest extends Component {
     return (
       <View style={{
         flex: 1,
-        marginTop: 70
+        marginTop: 70,
+        backgroundColor: 'white'
       }}>
+        {
+          this.state.loading ||
+          this.state.pullRequests.length !== 0 ? null : (
+            <Text style={{
+              color: 'gray',
+              textAlign: 'center',
+              fontStyle: 'italic',
+              margin: 20
+            }}>No pull requests yet</Text>
+          )
+        }
         <ScrollView style={{
           flex: 1,
           padding: 5,
