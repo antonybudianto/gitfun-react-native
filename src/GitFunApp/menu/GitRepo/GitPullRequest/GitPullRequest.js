@@ -59,7 +59,6 @@ class GitPullRequest extends Component {
         cache: 'no-store'
       });
       const result = await res.json();
-      console.log(JSON.stringify(result[0], null, 2))
       this.setState((state) => ({
         lastPage: result.length === 0,
         pullRequests: [...state.pullRequests, ...result],
