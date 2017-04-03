@@ -6,9 +6,9 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 ## Screenshots
 <p align="center">
-  <img src="https://lh6.googleusercontent.com/FFc7FbSX7lWmJe-4IObFUfKGzICZzAodhA2nj0lPue14h2SYqBOwlJVoFa5afQbsLNsMfeUf78efXeg=w2880-h1454-rw" width="230"/>
-  <img src="https://lh3.googleusercontent.com/ZL5YeXNEfc8JCAdrxesKmMI1DsP0EmuEQeDnjh3X7oGX_MzVyY2-UVTOBvi-g5pqeL_ghO-L6ZQpLmg=w2880-h1454" width="230"/>
-  <img src="https://lh6.googleusercontent.com/tC40TSU4C9VtxsQJF3bewN2MeH0dJixx-BcoLj3EWnbtmK7Qu1DnzaI2Y0C-t-8timxj5Zs1wYWqaR8=w2880-h1454" width="230"/>
+  <img src="https://lh4.googleusercontent.com/f-H9W5PGBoDuVHhXv83HkSAN-jdkJO2onwsCoJhFHeDfWF_-lBmFcRFNWl7xvVhpdS_jzQ66TMFuGGA=w2880-h1454-rw" width="230"/>
+  <img src="https://lh5.googleusercontent.com/FfyIlYFnqh6pqlmI6sUGv4i04vd5NbyKXLbmxk6rIe8LRG8L_hWnAUgaQ-lo4uFBqe2mFB4ZT7hUIbM=w2880-h1454-rw" width="230"/>
+  <img src="https://lh6.googleusercontent.com/vCUFd3jjq7YFwTiaacuH73AaJ8CeNhjavFtT-vwfDB_mjZ3DLJt_FLTNcIaa6RpCO5azI4LP91M9CGc=w2880-h1454-rw" width="230"/>
 </p>
 
 ## Available at
