@@ -6,9 +6,10 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 ## Screenshots
 <p align="center">
-  <img src="https://lh4.googleusercontent.com/f-H9W5PGBoDuVHhXv83HkSAN-jdkJO2onwsCoJhFHeDfWF_-lBmFcRFNWl7xvVhpdS_jzQ66TMFuGGA=w2880-h1454-rw" width="230"/>
-  <img src="https://lh5.googleusercontent.com/FfyIlYFnqh6pqlmI6sUGv4i04vd5NbyKXLbmxk6rIe8LRG8L_hWnAUgaQ-lo4uFBqe2mFB4ZT7hUIbM=w2880-h1454-rw" width="230"/>
-  <img src="https://lh6.googleusercontent.com/vCUFd3jjq7YFwTiaacuH73AaJ8CeNhjavFtT-vwfDB_mjZ3DLJt_FLTNcIaa6RpCO5azI4LP91M9CGc=w2880-h1454-rw" width="230"/>
+  <img src="http://i64.tinypic.com/nqekx0.png" width="150"/>
+  <img src="http://i63.tinypic.com/f2lyja.png" width="150"/>
+  <img src="http://i68.tinypic.com/2ivi1s5.png" width="150"/>
+  <img src="http://i68.tinypic.com/246kzn5.png" width="150"/>
 </p>
 
 ## Available at
