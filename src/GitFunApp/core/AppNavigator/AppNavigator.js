@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
   Platform,
-  Navigator,
   Text,
   StyleSheet,
   TouchableHighlight
 } from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components';
 
 import routeMapper from './AppRouteMapper';
 
